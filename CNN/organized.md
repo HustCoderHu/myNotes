@@ -12,12 +12,12 @@ redundancy that exists between different feature channels and filters
 -- 1) low rank approximations 低秩近似 + clustering of filters = 单卷基层1.6x  
 -- 2) 权重 8bit 量化，加速 & 小幅度精度损失  
 -- 3) rank-1 filters 逼近 image filters，大幅度加速 & 小幅度精度损失  
-**硬件相关优化**
+**硬件相关优化**  
 cuda-convnet and Caffe、SSSE3 SSSE4指令集,还有FPGA  
 [38]selective search 先找object 然后搜索
 
 # 2 filter Approximations
-N: 卷积核数 H,W: img height width  
+N: 卷积核数 H, W: img height width  
 直接实现卷积 O(d^2 * H * W * N)  
 y[i] = f[i] * x  
 [31][34][35]包含M个filters的集合，线性组合代替每个filter  

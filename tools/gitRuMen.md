@@ -61,6 +61,11 @@ $ git add .
 允许空白更改（--allow-empty），提交工作区上次commit之后的变化直接到仓库区（-a），附带message信息（-m "message"）
 ```
 $ git commit --allow-empty -am "message"
+$ git commit -m '	# 多行注释
+>>1. 1st line
+>>2. 2nd line
+>>3. 3rd line
+>>'
 ```
 
 ### 远程同步
