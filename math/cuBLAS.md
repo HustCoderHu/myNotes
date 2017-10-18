@@ -1,4 +1,4 @@
-#cublas
+cublas
 ---
 # 1 INTRODUCTION
 (基本线性代数子程序)数值程序库  
@@ -64,7 +64,7 @@ cublasSetKernelStream() 重命名为 cublasSetStream()
 具体参见[官网](http://docs.nvidia.com/cuda/cublas/#)
 
 ### 2.2.7 cublasSetPointerMode_t
-一次函数调用中多个标量scalar的mode必须相同
+一次函数调用中多个标量scalar的mode必须相同  
 Value | Meaning
 :- | :-:
 CUBLAS_POINTER_MODE_HOST   | the scalars are passed by reference on the host
@@ -149,5 +149,5 @@ op ( A ) = A  if transa == CUBLAS_OP_N A T  if transa == CUBLAS_OP_T A H  if tra
 
 
 
-# 参考
+# 3参考
 [玩玩CUBLAS(3)——level2函数](http://dev.dafan.info/detail/157153?p=30-53)
