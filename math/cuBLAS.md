@@ -132,7 +132,7 @@ cublasStatus_t cublasSaxpy(cublasHandle_t handle, int n,
 
 ### 2.5.6 scal()
 向量*标量
-$x += αx$  
+$x = αx$  
 ```
 cublasStatus_t cublasSscal(cublasHandle_t handle, int n,
 			const float *alpha, 
