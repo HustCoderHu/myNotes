@@ -1,70 +1,70 @@
 cublas
 ---
 # 1 INTRODUCTION
-(»ù±¾ÏßÐÔ´úÊý×Ó³ÌÐò)ÊýÖµ³ÌÐò¿â  
-[¹Ù·½Ô­ÎÄ](http://docs.nvidia.com/cuda/cublas/index.html#introduction)  
+(åŸºæœ¬çº¿æ€§ä»£æ•°å­ç¨‹åº)æ•°å€¼ç¨‹åºåº“  
+[å®˜æ–¹åŽŸæ–‡](http://docs.nvidia.com/cuda/cublas/index.html#introduction)  
 
-´ÓCUDA6.0Ö®ºó£¬cuBLAS ¿âÓÐÁ½Ì×API£¬µÚÒ»¸ö³ÆÎª**cuBLAS API**£¬µÚ¶þ¸öÊÇ**CUBLASXT API**  
-Ê¹ÓÃ**cuBLAS API** £¬Ó¦ÓÃÒ»¶¨ÒªÔÚGPUµÄÄÚ´æ¿Õ¼äÖÐ·ÖÅäÐèÒªµÄ¾ØÕóºÍÏòÁ¿£¬²¢½øÐÐ¸³Öµ£¬È»ºóµ÷ÓÃÊÊÓÃµÄcuBLASº¯Êý£¬Ö®ºó´ÓGPUÄÚ´æ¶ÁÈ¡Êý¾Ýµ½host¶Ë¡£cuBLAS API Ìá¹©ÁË¶ÁÐ´GPUÄÚ´æµÄ°ïÖúº¯Êý   
-Ê¹ÓÃ**CUBLASXT API**£¬Ó¦ÓÃÐèÒª°ÑÊý¾Ý·ÅÔÚHOST£¬È»ºó¿â»á¸ù¾ÝÓÃ»§µÄÒªÇó½«Êý¾Ýµ÷¶Èµ½GPUSµÄ´¦ÀíÉÏ  
+ä»ŽCUDA6.0ä¹‹åŽï¼ŒcuBLAS åº“æœ‰ä¸¤å¥—APIï¼Œç¬¬ä¸€ä¸ªç§°ä¸º**cuBLAS API**ï¼Œç¬¬äºŒä¸ªæ˜¯**CUBLASXT API**  
+ä½¿ç”¨**cuBLAS API** ï¼Œåº”ç”¨ä¸€å®šè¦åœ¨GPUçš„å†…å­˜ç©ºé—´ä¸­åˆ†é…éœ€è¦çš„çŸ©é˜µå’Œå‘é‡ï¼Œå¹¶è¿›è¡Œèµ‹å€¼ï¼Œç„¶åŽè°ƒç”¨é€‚ç”¨çš„cuBLASå‡½æ•°ï¼Œä¹‹åŽä»ŽGPUå†…å­˜è¯»å–æ•°æ®åˆ°hostç«¯ã€‚cuBLAS API æä¾›äº†è¯»å†™GPUå†…å­˜çš„å¸®åŠ©å‡½æ•°   
+ä½¿ç”¨**CUBLASXT API**ï¼Œåº”ç”¨éœ€è¦æŠŠæ•°æ®æ”¾åœ¨HOSTï¼Œç„¶åŽåº“ä¼šæ ¹æ®ç”¨æˆ·çš„è¦æ±‚å°†æ•°æ®è°ƒåº¦åˆ°GPUSçš„å¤„ç†ä¸Š  
 
 ## 1.1 Data layout
-ÎªÁË×î´óÏÞÖÆÂú×ãÒÑÓÐµÄFortran »·¾³£¬cuBLAS ²ÉÓÃµÄÊÇÁÐÓÅÏÈµÄ´æ´¢·½Ê½ºÍ»ùÓÚ1µÄ¼ìË÷  
+ä¸ºäº†æœ€å¤§é™åˆ¶æ»¡è¶³å·²æœ‰çš„Fortran çŽ¯å¢ƒï¼ŒcuBLAS é‡‡ç”¨çš„æ˜¯åˆ—ä¼˜å…ˆçš„å­˜å‚¨æ–¹å¼å’ŒåŸºäºŽ1çš„æ£€ç´¢  
 1  4  7  
 2  5  8  
 3  6  9  
 ```
 #define IDX2C(i,j,ld) (((j)*(ld))+(i))
 ```
-Õâ¸öºê±íÊ¾£¬¾ØÕóµÚiÐÐµÚjÁÐµÄÔªËØÔÚCÓïÑÔÖÐ Êý×é´æ´¢Î»ÖÃµÄË÷Òý£¬ld±íÊ¾µÄÊÇ ¾ØÕóµÄµÚÒ»Î¬µÄÔªËØ¸öÊý£¬¾ÍÊÇ ¾ØÕóµÄÐÐÊý  
-**Ê¹ÓÃÕâÖÖºêµÄ³¡¾°ÃèÊö£º**  
-ÄãÒª²Ù×÷µÄ¾ØÕóÊÇÎªCUBLAS¿âº¯Êý×¼±¸µÄ¡£¾ÍÊÇËµÄãÕýÔÚ×¼±¸½«Õâ¸ö¾ØÕó×÷Îª²ÎÊý´«µÝ¸øCUBLASµÄ¿âº¯Êý¡£
-Äã´ÓCUBLASÖÐµÃµ½ÁËÄ³¸ö¾ØÕó£¬Äã¿ÉÒÔÊ¹ÓÃÕâ¸öºêÀ´Ë÷ÒýÏàÓ¦µÄÔªËØ¡£  
-¸üÏêÏ¸µÄ¿´[ÕâÀï](http://dev.dafan.info/detail/157153?p=30-53)
+è¿™ä¸ªå®è¡¨ç¤ºï¼ŒçŸ©é˜µç¬¬iè¡Œç¬¬jåˆ—çš„å…ƒç´ åœ¨Cè¯­è¨€ä¸­ æ•°ç»„å­˜å‚¨ä½ç½®çš„ç´¢å¼•ï¼Œldè¡¨ç¤ºçš„æ˜¯ çŸ©é˜µçš„ç¬¬ä¸€ç»´çš„å…ƒç´ ä¸ªæ•°ï¼Œå°±æ˜¯ çŸ©é˜µçš„è¡Œæ•°  
+**ä½¿ç”¨è¿™ç§å®çš„åœºæ™¯æè¿°ï¼š**  
+ä½ è¦æ“ä½œçš„çŸ©é˜µæ˜¯ä¸ºCUBLASåº“å‡½æ•°å‡†å¤‡çš„ã€‚å°±æ˜¯è¯´ä½ æ­£åœ¨å‡†å¤‡å°†è¿™ä¸ªçŸ©é˜µä½œä¸ºå‚æ•°ä¼ é€’ç»™CUBLASçš„åº“å‡½æ•°ã€‚
+ä½ ä»ŽCUBLASä¸­å¾—åˆ°äº†æŸä¸ªçŸ©é˜µï¼Œä½ å¯ä»¥ä½¿ç”¨è¿™ä¸ªå®æ¥ç´¢å¼•ç›¸åº”çš„å…ƒç´ ã€‚  
+æ›´è¯¦ç»†çš„çœ‹[è¿™é‡Œ](http://dev.dafan.info/detail/157153?p=30-53)
 
 ## 1.2 New and Legacy cuBLAS API
-´Ó4.0°æ±¾Ö®ºó£¬cuBLAS¿âÌá¹©´«Í³µÄAPIµÄÍ¬Ê±Ò²Ìá¹©ÐÂ¸üÐÂµÄAPI¡£Õâ¸öµØ·½½«½éÉÜÐÂÌá¹©µÄAPIºÍËüµÄÓÅµãÒÔ¼°´«Í³µÄAPIµÄÇø±ð  
-Í¨¹ýÍ·ÎÄ¼þ"cublas_v2.h"Ê¹ÓÃÐÂµÄAPI
-ÏÂÃæµÄÌØÕ÷ÊÇ ´«Í³APIÃ»ÓÐµÄ£º 
-- 1 cuBLASµÄÉÏÏÂÎÄ¾ä±úÓÃº¯Êý³õÊ¼»¯²¢ÇÒ±»´«µÝµ½ºóÐøÃ¿Ò»¸öÊ¹ÓÃµÄ¿âº¯Êý¡£ÕâÊ¹µÃÓÃ»§ÔÚ¶àÖ÷»úÏß³ÌºÍ¶àGPUÊ±¶Ô¿âµÄÉèÖÃÓÐ¸ü¶àµÄ¿ØÖÆÈ¨¡£ÕâÊ¹µÃcuBLAS API¿ÉÒÔÖØÈë£¨reentrant£©
-- 2 ±êÁ¿¦ÁºÍ¦Â¿ÉÒÔÍ¨¹ýÔÚÖ÷»ú»òÕßÉè±¸ÖÐÉùÃ÷È»ºó½øÐÐ´«µÝ£¬¶ø²»ÊÇÔÚÖ÷»úÉÏ±»·ÖÅäÈ»ºóÍ¨¹ýÖµ½øÐÐ´«µÝ¡£Õâ¸ö¸Ä±äÊ¹µÃ¿âº¯Êý¿ÉÒÔÓÃÁ÷½øÐÐÖ´ÐÐÍ¬²½£¬¼´Ê¹¦ÁºÍ¦Â ÊÇÔÚÇ°ÃæµÄºË²úÉúµÄ
-- 3 µ±Ò»¸ö¿âº¯Êý·µ»ØÒ»¸ö±êÁ¿½á¹û£¬Ëü¿ÉÒÔÍ¨¹ýÒ»¸öÔÚÖ÷»ú»òÕßÉè±¸ÉùÃ÷µÄ±äÁ¿·µ»Ø£¬¶ø²»ÊÇ·µ»ØÖ÷»úÖÐµÄÊýÖµ¡£Õâ¸öÊ¹µÃ¿âº¯Êý¿ÉÒÔÖ±½ÓÊ¹ÓÃ·µ»ØÖµ
+ä»Ž4.0ç‰ˆæœ¬ä¹‹åŽï¼ŒcuBLASåº“æä¾›ä¼ ç»Ÿçš„APIçš„åŒæ—¶ä¹Ÿæä¾›æ–°æ›´æ–°çš„APIã€‚è¿™ä¸ªåœ°æ–¹å°†ä»‹ç»æ–°æä¾›çš„APIå’Œå®ƒçš„ä¼˜ç‚¹ä»¥åŠä¼ ç»Ÿçš„APIçš„åŒºåˆ«  
+é€šè¿‡å¤´æ–‡ä»¶"cublas_v2.h"ä½¿ç”¨æ–°çš„API
+ä¸‹é¢çš„ç‰¹å¾æ˜¯ ä¼ ç»ŸAPIæ²¡æœ‰çš„ï¼š 
+- 1 cuBLASçš„ä¸Šä¸‹æ–‡å¥æŸ„ç”¨å‡½æ•°åˆå§‹åŒ–å¹¶ä¸”è¢«ä¼ é€’åˆ°åŽç»­æ¯ä¸€ä¸ªä½¿ç”¨çš„åº“å‡½æ•°ã€‚è¿™ä½¿å¾—ç”¨æˆ·åœ¨å¤šä¸»æœºçº¿ç¨‹å’Œå¤šGPUæ—¶å¯¹åº“çš„è®¾ç½®æœ‰æ›´å¤šçš„æŽ§åˆ¶æƒã€‚è¿™ä½¿å¾—cuBLAS APIå¯ä»¥é‡å…¥ï¼ˆreentrantï¼‰
+- 2 æ ‡é‡Î±å’ŒÎ²å¯ä»¥é€šè¿‡åœ¨ä¸»æœºæˆ–è€…è®¾å¤‡ä¸­å£°æ˜Žç„¶åŽè¿›è¡Œä¼ é€’ï¼Œè€Œä¸æ˜¯åœ¨ä¸»æœºä¸Šè¢«åˆ†é…ç„¶åŽé€šè¿‡å€¼è¿›è¡Œä¼ é€’ã€‚è¿™ä¸ªæ”¹å˜ä½¿å¾—åº“å‡½æ•°å¯ä»¥ç”¨æµè¿›è¡Œæ‰§è¡ŒåŒæ­¥ï¼Œå³ä½¿Î±å’ŒÎ² æ˜¯åœ¨å‰é¢çš„æ ¸äº§ç”Ÿçš„
+- 3 å½“ä¸€ä¸ªåº“å‡½æ•°è¿”å›žä¸€ä¸ªæ ‡é‡ç»“æžœï¼Œå®ƒå¯ä»¥é€šè¿‡ä¸€ä¸ªåœ¨ä¸»æœºæˆ–è€…è®¾å¤‡å£°æ˜Žçš„å˜é‡è¿”å›žï¼Œè€Œä¸æ˜¯è¿”å›žä¸»æœºä¸­çš„æ•°å€¼ã€‚è¿™ä¸ªä½¿å¾—åº“å‡½æ•°å¯ä»¥ç›´æŽ¥ä½¿ç”¨è¿”å›žå€¼
 - 4
-´íÎó×´Ì¬ cublasStatus_t£¬¸üºÃµ÷ÊÔ
+é”™è¯¯çŠ¶æ€ cublasStatus_tï¼Œæ›´å¥½è°ƒè¯•
 - 5
 the cublasAlloc() and cublasFree() functions have been deprecated. This change removes these unnecessary wrappers around cudaMalloc() and cudaFree(), respectively
 - 6
-cublasSetKernelStream() ÖØÃüÃûÎª cublasSetStream()
+cublasSetKernelStream() é‡å‘½åä¸º cublasSetStream()
 
 ## 1.3 Example code
 
 # 2 Using the cuBLAS API
 ## 2.1 General description
 ### 2.1.1 Error status
-ËùÓÐµÄcuBLAS¿âº¯Êý¶¼·µ»Øthe error status cublasStatus_t
+æ‰€æœ‰çš„cuBLASåº“å‡½æ•°éƒ½è¿”å›žthe error status cublasStatus_t
 
 ### 2.1.2 cuBLAS context
-Ó¦ÓÃ±ØÐëÍ¨¹ýµ÷ÓÃcublasCreate()º¯ÊýÀ´³õÊ¼»¯cuBLAS ¿âµÄÉÏÏÂÎÄ¾ä±ú¡£Í¨¹ýcublasDestory()À´ÊÍ·Å¡£Ó¦ÓÃ³ÌÐò¿ÉÒÔÊ¹ÓÃcudaSetDevice()½áºÏ³õÊ¼»¯µÄ¶ÀÌØÉÏÏÂÎÄ¾ä±ú£¬Ó¦ÓÃ³ÌÐò¸ù¾Ý²»Í¬µÄ¾ä±ú½«Êý¾Ý´«µÝµ½²»Í¬µÄÉè±¸½øÐÐ¼ÆËã¡£Èç¹ûÔÚÒ»¸öÖ÷»úÀïÃæÊ¹ÓÃ²»Í¬µÄÉèÖÃ£¬ÔÚÊ¹ÓÃÐÂÉè±¸Ç°µ÷ÓÃcudaSetDevice()£¬È»ºócublasCreate()¸ù¾Ýµ±Ç°µÄÉèÖÃÉè±¸À´³õÊ¼»¯²»Í¬µÄÉÏÏÂÎÄ¾ä±ú¡£
+åº”ç”¨å¿…é¡»é€šè¿‡è°ƒç”¨cublasCreate()å‡½æ•°æ¥åˆå§‹åŒ–cuBLAS åº“çš„ä¸Šä¸‹æ–‡å¥æŸ„ã€‚é€šè¿‡cublasDestory()æ¥é‡Šæ”¾ã€‚åº”ç”¨ç¨‹åºå¯ä»¥ä½¿ç”¨cudaSetDevice()ç»“åˆåˆå§‹åŒ–çš„ç‹¬ç‰¹ä¸Šä¸‹æ–‡å¥æŸ„ï¼Œåº”ç”¨ç¨‹åºæ ¹æ®ä¸åŒçš„å¥æŸ„å°†æ•°æ®ä¼ é€’åˆ°ä¸åŒçš„è®¾å¤‡è¿›è¡Œè®¡ç®—ã€‚å¦‚æžœåœ¨ä¸€ä¸ªä¸»æœºé‡Œé¢ä½¿ç”¨ä¸åŒçš„è®¾ç½®ï¼Œåœ¨ä½¿ç”¨æ–°è®¾å¤‡å‰è°ƒç”¨cudaSetDevice()ï¼Œç„¶åŽcublasCreate()æ ¹æ®å½“å‰çš„è®¾ç½®è®¾å¤‡æ¥åˆå§‹åŒ–ä¸åŒçš„ä¸Šä¸‹æ–‡å¥æŸ„ã€‚
 
 ### 2.1.5 Scalar Parameters
-ÓÐÁ½ÖÖÀà±ðµÄº¯ÊýÊ¹ÓÃ±êÁ¿²ÎÊý£º  
-- 1 ½«ÔÚÖ÷»ú»òÕßÉè±¸ÄÚ¶¨ÒåµÄ¦Á»òÕß¦Â ×÷Îª±ä»¯Òò×ÓµÄº¯Êý£¬Èçgemm
-- 2 ·µ»ØÔÚÉè±¸»òÕßÖ÷»úÉÏµÄ±êÁ¿µÄº¯Êý£¬Èç amax(), amin(), asum(), rotg(), rotmg(), rotmg(), dot() ºÍ nrm2()  
+æœ‰ä¸¤ç§ç±»åˆ«çš„å‡½æ•°ä½¿ç”¨æ ‡é‡å‚æ•°ï¼š  
+- 1 å°†åœ¨ä¸»æœºæˆ–è€…è®¾å¤‡å†…å®šä¹‰çš„Î±æˆ–è€…Î² ä½œä¸ºå˜åŒ–å› å­çš„å‡½æ•°ï¼Œå¦‚gemm
+- 2 è¿”å›žåœ¨è®¾å¤‡æˆ–è€…ä¸»æœºä¸Šçš„æ ‡é‡çš„å‡½æ•°ï¼Œå¦‚ amax(), amin(), asum(), rotg(), rotmg(), rotmg(), dot() å’Œ nrm2()  
 
-¶ÔÓÚµÚÒ»ÖÖÀà±ð£¬µ±Ö¸ÕëÄ£Ê½ÉèÖÃÎª¡±CUBLAS_POINTER_MODE_HOST¡±,ÕâÖÖÇé¿ö±êÁ¿¦Á»òÕß¦Â¿ÉÒÔÔÚÕ»»òÕß·ÖÅäÔÚ¶ÑÖÐ¡£Underneath the CUDA kernels related tothat functions will be launched with the value of alpha and/or beta. Òò´ËÈç¹ûËûÃÇÔÚ¶ÑÖÐ±»·ÖÅä£¬ËûÃÇ¿ÉÒÔÔÚµ÷ÓÃ·Å»Øºó±»ÊÍ·Å¼´Ê¹ÄÚºËÊÇÒì²½µÄ¡£µ±Ö¸ÕëµÄÄ£Ê½ÉèÖÃÎª¡°CUBLAS_POINTER_MODE_DEVICE¡±¦Á»òÕß¦Â Ó¦¸ÃÔÚÉè±¸ÉÏ¿ÉÒÔ±»·ÃÎÊ²¢ÇÒ²»ÄÜ±»ÐÞ¸ÄÖ±µ½ºËµ÷ÓÃÍê³É¡£×¢ÒâÓÉÓÚcudaFreeÒþÊ½µ÷ÓÃcudaDeviceSynchronize()£¬cudaFree() can still be called on alpha and/or beta just after the call but it would defeat the purpose of using this pointer mode in that case.  
-µÚ¶þÖÖÄ£Ê½£ºÖ¸ÕëÄ£Ê½Îª¡±CUBLAS_POINTER_MODE_HOST¡±£¬GPU¼ÆËãÍê³Éºó½á¹û»á¸³Öµ»ØHost¡£Ö¸ÕëÄ£Ê½ÉèÖÃÎª ¡°CUBLAS_POINTER_MODE_DEVICE¡°Õâº¯ÊýÁ¢¼´·µ»Ø¡£ÕâÖÖÇé¿ö£¬ºÍ¾ØÕó»òÕßÏòÁ¿½á¹ûÏàËÆ£¬±êÁ¿½á¹ûÖ»ÓÐµÈÀý³ÌÔÚGPUÉÏÍê³É¡£ÎªÁË´ÓÖ÷»úÀïÃæ¶Á½á¹û£¬Õâ¸ö¾ÍÒªÇóÕýÈ·µÄÍ¬²½¡£ 
-ÔÚÈÎºÎÒ»ÖÖÇé¿ö£¬Ö¸ÕëÄ£Ê½Îª¡°CUBLAS_POINTER_MODE_DEVICE¡°¿âº¯ÊýÔÊÐíÔÚÍêÈ«Òì²½Ê±Ö´ÐÐ£¬¼´Ê¹alpha ºÍ betaÊÇÇ°Ò»¸öºË²úÉú¡£±ÈÈç£¬µ±ÓÃcuBLAS¿âÑ­»·µÄ·½·¨½â¾öÏßÐÔÏµÍ³ºÍÌØÕ÷ÖµµÄÎÊÌâÊÇ»á³öÏÖ
+å¯¹äºŽç¬¬ä¸€ç§ç±»åˆ«ï¼Œå½“æŒ‡é’ˆæ¨¡å¼è®¾ç½®ä¸ºâ€CUBLAS_POINTER_MODE_HOSTâ€,è¿™ç§æƒ…å†µæ ‡é‡Î±æˆ–è€…Î²å¯ä»¥åœ¨æ ˆæˆ–è€…åˆ†é…åœ¨å †ä¸­ã€‚Underneath the CUDA kernels related tothat functions will be launched with the value of alpha and/or beta. å› æ­¤å¦‚æžœä»–ä»¬åœ¨å †ä¸­è¢«åˆ†é…ï¼Œä»–ä»¬å¯ä»¥åœ¨è°ƒç”¨æ”¾å›žåŽè¢«é‡Šæ”¾å³ä½¿å†…æ ¸æ˜¯å¼‚æ­¥çš„ã€‚å½“æŒ‡é’ˆçš„æ¨¡å¼è®¾ç½®ä¸ºâ€œCUBLAS_POINTER_MODE_DEVICEâ€Î±æˆ–è€…Î² åº”è¯¥åœ¨è®¾å¤‡ä¸Šå¯ä»¥è¢«è®¿é—®å¹¶ä¸”ä¸èƒ½è¢«ä¿®æ”¹ç›´åˆ°æ ¸è°ƒç”¨å®Œæˆã€‚æ³¨æ„ç”±äºŽcudaFreeéšå¼è°ƒç”¨cudaDeviceSynchronize()ï¼ŒcudaFree() can still be called on alpha and/or beta just after the call but it would defeat the purpose of using this pointer mode in that case.  
+ç¬¬äºŒç§æ¨¡å¼ï¼šæŒ‡é’ˆæ¨¡å¼ä¸ºâ€CUBLAS_POINTER_MODE_HOSTâ€ï¼ŒGPUè®¡ç®—å®ŒæˆåŽç»“æžœä¼šèµ‹å€¼å›žHostã€‚æŒ‡é’ˆæ¨¡å¼è®¾ç½®ä¸º â€œCUBLAS_POINTER_MODE_DEVICEâ€œè¿™å‡½æ•°ç«‹å³è¿”å›žã€‚è¿™ç§æƒ…å†µï¼Œå’ŒçŸ©é˜µæˆ–è€…å‘é‡ç»“æžœç›¸ä¼¼ï¼Œæ ‡é‡ç»“æžœåªæœ‰ç­‰ä¾‹ç¨‹åœ¨GPUä¸Šå®Œæˆã€‚ä¸ºäº†ä»Žä¸»æœºé‡Œé¢è¯»ç»“æžœï¼Œè¿™ä¸ªå°±è¦æ±‚æ­£ç¡®çš„åŒæ­¥ã€‚ 
+åœ¨ä»»ä½•ä¸€ç§æƒ…å†µï¼ŒæŒ‡é’ˆæ¨¡å¼ä¸ºâ€œCUBLAS_POINTER_MODE_DEVICEâ€œåº“å‡½æ•°å…è®¸åœ¨å®Œå…¨å¼‚æ­¥æ—¶æ‰§è¡Œï¼Œå³ä½¿alpha å’Œ betaæ˜¯å‰ä¸€ä¸ªæ ¸äº§ç”Ÿã€‚æ¯”å¦‚ï¼Œå½“ç”¨cuBLASåº“å¾ªçŽ¯çš„æ–¹æ³•è§£å†³çº¿æ€§ç³»ç»Ÿå’Œç‰¹å¾å€¼çš„é—®é¢˜æ˜¯ä¼šå‡ºçŽ°
 
 ## 2.2 cuBLAS Datatypes
 ### 2.2.1 cublasHandle_t
-ÓÃcublasCreate() ³õÊ¼»¯£¬ÆäËûº¯Êýµ÷ÓÃµÄÊ±ºò´«Èë
+ç”¨cublasCreate() åˆå§‹åŒ–ï¼Œå…¶ä»–å‡½æ•°è°ƒç”¨çš„æ—¶å€™ä¼ å…¥
 
 ### 2.2.2 cublasStatus_t
-ËùÓÐº¯Êý·µ»ØÕâ¸öÀàÐÍ
-¾ßÌå²Î¼û[¹ÙÍø](http://docs.nvidia.com/cuda/cublas/#)
+æ‰€æœ‰å‡½æ•°è¿”å›žè¿™ä¸ªç±»åž‹
+å…·ä½“å‚è§[å®˜ç½‘](http://docs.nvidia.com/cuda/cublas/#)
 
 ### 2.2.7 cublasSetPointerMode_t
-Ò»´Îº¯Êýµ÷ÓÃÖÐ¶à¸ö±êÁ¿scalarµÄmode±ØÐëÏàÍ¬  
+ä¸€æ¬¡å‡½æ•°è°ƒç”¨ä¸­å¤šä¸ªæ ‡é‡scalarçš„modeå¿…é¡»ç›¸åŒ  
 Value | Meaning
 :- | :-:
 CUBLAS_POINTER_MODE_HOST   | the scalars are passed by reference on the host
@@ -95,12 +95,12 @@ cublasStatus_t cublasSetVector(int n, int elemSize,
 		const void *x, int incx, 
 		void *y, int incy)
 ```
-½«n¸ö³¤¶ÈÎªelemSizeµÄ´ÓÖ÷»úÄÚ´æµØÖ· x ¸´ÖÆµ½ GPUÄÚ´æµØÖ·y  
-incx ºÍ incy ÎªÃ¿¸öÔªËØÍ·¼ä¾àÀë
+å°†nä¸ªé•¿åº¦ä¸ºelemSizeçš„ä»Žä¸»æœºå†…å­˜åœ°å€ x å¤åˆ¶åˆ° GPUå†…å­˜åœ°å€y  
+incx å’Œ incy ä¸ºæ¯ä¸ªå…ƒç´ å¤´é—´è·ç¦»
 
 
 ### 2.4.9 cublasGetVector()
-²ÎÊýÍ¬ÉÏ£¬´ÓGPUµ½host
+å‚æ•°åŒä¸Šï¼Œä»ŽGPUåˆ°host
 
 ### 2.4.10 cublasSetMatrix()
 ```
@@ -113,7 +113,7 @@ cublasStatus_t cublasSetMatrix(int rows, int cols, int elemSize,
 ## 2.5 Level-1 functions
 scalar and vector based operations
 ### 2.5.4 axpy()
-$y += ¦Áx$  
+$y += Î±x$  
 ```
 cublasStatus_t cublasSaxpy(cublasHandle_t handle, int n,
 			const float *alpha, 
@@ -122,7 +122,7 @@ cublasStatus_t cublasSaxpy(cublasHandle_t handle, int n,
 ```
 
 ### 2.5.6 dot()
-ÏòÁ¿µã»ý
+å‘é‡ç‚¹ç§¯
 ```
 cublasStatus_t cublasSaxpy(cublasHandle_t handle, int n,
 			const float *x, int incx, 
@@ -131,8 +131,8 @@ cublasStatus_t cublasSaxpy(cublasHandle_t handle, int n,
 ```
 
 ### 2.5.6 scal()
-ÏòÁ¿*±êÁ¿
-$x = ¦Áx$  
+å‘é‡*æ ‡é‡
+$x = Î±x$  
 ```
 cublasStatus_t cublasSscal(cublasHandle_t handle, int n,
 			const float *alpha, 
@@ -143,11 +143,11 @@ cublasStatus_t cublasSscal(cublasHandle_t handle, int n,
 
 ## 2.7 Level-3 functions
 
-$y = ¦Á op ( A ) x + ¦Â y$  
-where A is a m ¡Á n matrix stored in column-major format, x and y are vectors, and ¦Á and ¦Â are scalars. Also, for matrix A  
+$y = Î± op ( A ) x + Î² y$  
+where A is a m Ã— n matrix stored in column-major format, x and y are vectors, and Î± and Î² are scalars. Also, for matrix A  
 op ( A ) = A  if transa == CUBLAS_OP_N A T  if transa == CUBLAS_OP_T A H  if transa == CUBLAS_OP_H
 
 
 
-# 3²Î¿¼
-[ÍæÍæCUBLAS(3)¡ª¡ªlevel2º¯Êý](http://dev.dafan.info/detail/157153?p=30-53)
+# 3å‚è€ƒ
+[çŽ©çŽ©CUBLAS(3)â€”â€”level2å‡½æ•°](http://dev.dafan.info/detail/157153?p=30-53)

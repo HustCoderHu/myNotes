@@ -3,16 +3,16 @@ BLAS
 # 1 OpenBLAS
 [developer manual](https://github.com/xianyi/OpenBLAS/wiki/Developer-manual)
 
-## 1.1 OpenBLAS ½Ó¿Ú²ã
-ÔÚOpenBLAS½Ó¿Ú²ãÖĞ£¬ÔËËãÓÖ·ÖÎªÈı¸öÀàĞÍ£¬·Ö±ğÊÇlevel1µ½3£¬ÆäÖĞlevel3¶ÔÓ¦¾ØÕóºÍ¾ØÕóµÄÔËËã£¬level2ºÍlevel1ÒÀ´ÎÎ¬¶ÈÔ½À´Ô½µÍ¡£²»¹ıÕâĞ©level1~3¶¼ÊÇBLASÄÚ²¿¼ÆËãÊ±Ê¹ÓÃµÄ½Ó¿Ú£¨Ô´´úÂë»ù±¾ÔÚdriver/levelÏÂ£©£¬¶ÔÍâ½çÓÃ»§µÄ½Ó¿ÚÊÇ²»Éæ¼°Õâ¸ö¸ÅÄîµÄ£¨¶ÔÍâ½Ó¿Ú»ù±¾¶¼ÔÚinterfaceÎÄ¼ş¼ĞÏÂ£© 
+## 1.1 OpenBLAS æ¥å£å±‚
+åœ¨OpenBLASæ¥å£å±‚ä¸­ï¼Œè¿ç®—åˆåˆ†ä¸ºä¸‰ä¸ªç±»å‹ï¼Œåˆ†åˆ«æ˜¯level1åˆ°3ï¼Œå…¶ä¸­level3å¯¹åº”çŸ©é˜µå’ŒçŸ©é˜µçš„è¿ç®—ï¼Œlevel2å’Œlevel1ä¾æ¬¡ç»´åº¦è¶Šæ¥è¶Šä½ã€‚ä¸è¿‡è¿™äº›level1~3éƒ½æ˜¯BLASå†…éƒ¨è®¡ç®—æ—¶ä½¿ç”¨çš„æ¥å£ï¼ˆæºä»£ç åŸºæœ¬åœ¨driver/levelä¸‹ï¼‰ï¼Œå¯¹å¤–ç•Œç”¨æˆ·çš„æ¥å£æ˜¯ä¸æ¶‰åŠè¿™ä¸ªæ¦‚å¿µçš„ï¼ˆå¯¹å¤–æ¥å£åŸºæœ¬éƒ½åœ¨interfaceæ–‡ä»¶å¤¹ä¸‹ï¼‰ 
 [github](https://github.com/xianyi/OpenBLAS/tree/develop/interface)  
-Ã¿Ò»¸öÔ´´úÂëÎÄ¼ş¶ÔÓ¦Ò»ÖÖ²Ù×÷£¬ÈçgemmÖ¸µÄÊÇÆÕÍ¨¾ØÕó³Ë·¨£¨General Matrix Multiplication£©¶øgemvÖ¸µÄÊÇÆÕÍ¨¾ØÕóÏòÁ¿³Ë·¨£¨General Matrix Vector£©
+æ¯ä¸€ä¸ªæºä»£ç æ–‡ä»¶å¯¹åº”ä¸€ç§æ“ä½œï¼Œå¦‚gemmæŒ‡çš„æ˜¯æ™®é€šçŸ©é˜µä¹˜æ³•ï¼ˆGeneral Matrix Multiplicationï¼‰è€ŒgemvæŒ‡çš„æ˜¯æ™®é€šçŸ©é˜µå‘é‡ä¹˜æ³•ï¼ˆGeneral Matrix Vectorï¼‰
 
-[ÏêÏ¸ËµÃ÷](https://www.ibm.com/support/knowledgecenter/SSFHY8_5.3.0/com.ibm.cluster.essl.v5r3.essl100.doc/am5gr_hsgemm.htm)£¬´óÖÂÎªC´ú±í¸´Êı¼ÆËã£¬Z´ú±íË«¾«¶È¸´Êı£¬¶øS´ú±íµ¥¾«¶È³£Êı
-È«º¯ÊıÉùÃ÷ https://github.com/xianyi/OpenBLAS/blob/develop/cblas.h  
+[è¯¦ç»†è¯´æ˜](https://www.ibm.com/support/knowledgecenter/SSFHY8_5.3.0/com.ibm.cluster.essl.v5r3.essl100.doc/am5gr_hsgemm.htm)ï¼Œå¤§è‡´ä¸ºCä»£è¡¨å¤æ•°è®¡ç®—ï¼ŒZä»£è¡¨åŒç²¾åº¦å¤æ•°ï¼Œè€ŒSä»£è¡¨å•ç²¾åº¦å¸¸æ•°
+å…¨å‡½æ•°å£°æ˜ https://github.com/xianyi/OpenBLAS/blob/develop/cblas.h  
 
-## 1.2 ¾ÙÀı
-**¾ØÕóÏà³Ë**
+## 1.2 ä¸¾ä¾‹
+**çŸ©é˜µç›¸ä¹˜**
 ```
 void cblas_sgemm(const enum CBLAS_ORDER Order,
 	const enum CBLAS_TRANSPOSE TransA, const enum CBLAS_TRANSPOSE TransB, 
@@ -24,22 +24,22 @@ void cblas_sgemm(const enum CBLAS_ORDER Order,
 	float  *C, const int ldc)
 ```
 C := alpha*op(A)*op(B) + beta*C  
-op: ²»×ªÖÃ£¬×ªÖÃ£¬¹²éî  
+op: ä¸è½¬ç½®ï¼Œè½¬ç½®ï¼Œå…±è½­  
 
-²ÎÊı | Öµ
+å‚æ•° | å€¼
 :- | :-
 Order          | CblasRowMajor, CblasColMajor
 TransA, TransB | CblasNoTrans, CblasTrans
-M              | op(A) ºÍ C µÄĞĞÊı
-N              | op(B) ºÍ C µÄÁĞÊı
-K              | op(A) µÄÁĞÊıºÍ op(B) µÄĞĞÊı
+M              | op(A) å’Œ C çš„è¡Œæ•°
+N              | op(B) å’Œ C çš„åˆ—æ•°
+K              | op(A) çš„åˆ—æ•°å’Œ op(B) çš„è¡Œæ•°
 
 
-# 2 Caffe ÖĞ BLAS µÄÊ¹ÓÃ
-¾ØÕóÔËËãº¯ÊıÔÚÎÄ¼şmath_functions.hppÖĞ¿ÉÒÔÕÒµ½¡£ÆäÖĞµÄº¯Êı¶àÊÇ¶ÔBLASÏàÓ¦APIµÄ°ü×°  
-[²Î¿¼](http://blog.csdn.net/seven_first/article/details/47378697)
+# 2 Caffe ä¸­ BLAS çš„ä½¿ç”¨
+çŸ©é˜µè¿ç®—å‡½æ•°åœ¨æ–‡ä»¶math_functions.hppä¸­å¯ä»¥æ‰¾åˆ°ã€‚å…¶ä¸­çš„å‡½æ•°å¤šæ˜¯å¯¹BLASç›¸åº”APIçš„åŒ…è£…  
+[å‚è€ƒ](http://blog.csdn.net/seven_first/article/details/47378697)
 
-## 2.1 ¾ØÕóÓë¾ØÕó£¬¾ØÕóÓëÏòÁ¿µÄ³Ë·¨
+## 2.1 çŸ©é˜µä¸çŸ©é˜µï¼ŒçŸ©é˜µä¸å‘é‡çš„ä¹˜æ³•
 ```
 template<>
 void caffe_cpu_gemm<float>(
@@ -54,11 +54,11 @@ void caffe_cpu_gemm<float>(
       ldb, beta, C, N);
 }
 ```
-[²Î¿¼](https://xmfbit.github.io/2017/03/08/mathfunctions-in-caffe/)  
+[å‚è€ƒ](https://xmfbit.github.io/2017/03/08/mathfunctions-in-caffe/)  
 
-## 2.2 ¾ØÕó/ÏòÁ¿µÄ¼Ó¼õ
-- caffe_axpy(N, alpha, x, mutable y)        ÏòÁ¿¼Ó·¨ Y = alpha * X + Y
-- caffe_axpby(N, alpha, x, beta, mutable y) ÏòÁ¿¼Ó·¨ Y = alpha * X + beta * Y
+## 2.2 çŸ©é˜µ/å‘é‡çš„åŠ å‡
+- caffe_axpy(N, alpha, x, mutable y)        å‘é‡åŠ æ³• Y = alpha * X + Y
+- caffe_axpby(N, alpha, x, beta, mutable y) å‘é‡åŠ æ³• Y = alpha * X + beta * Y
 
-## 2.3 ÄÚ´æÏà¹Ø
+## 2.3 å†…å­˜ç›¸å…³
 
