@@ -28,11 +28,34 @@ CSR和COO相似，唯一不同就是非零值的行索引。COO模式下，所�
 ![](http://images0.cnblogs.com/blog2015/657339/201506/210230338105032.png)  
 ![](http://images0.cnblogs.com/blog2015/657339/201506/210231036235625.png)  
 
-## 3 Formatting Conversion with cuSPARSE
+# 3 Formatting Conversion with cuSPARSE
 这个过程应该尽量避免，转换不仅需要有计算的开销，还有额外存储的空间浪费  
 ![](http://images0.cnblogs.com/blog2015/657339/201506/210233461236647.png)  
 
-## 4 Demonstrating cuSPARSE
+# 4 Demonstrating cuSPARSE
+
+```
+// Create the cuSPARSE handle
+cusparseCreate(&handle);
+// Allocate device memory for vectors and the dense form of the matrix A
+...
+// Construct a descriptor of the matrix A
+cusparseCreateMatDescr(&descr);
+cusparseSetMatType(descr, CUSPARSE_MATRIX_TYPE_GENERAL);
+cusparseSetMatIndexBase(descr, CUSPARSE_INDEX_BASE_ZERO);
+// Transfer the input vectors and dense matrix A to the device
+...
+// Compute the number of non-zero elements in A
+cusparseSnnz(handle, CUSPARSE_DIRECTION_ROW, M, N, descr, dA,M, dNnzPerRow, &totalNnz);
+// Allocate device memory to store the sparse CSR representation of A
+...
+// Convert A from a dense formatting to a CSR formatting, using the GPU
+cusparseSdense2csr(handle, M, N, descr, dA, M, dNnzPerRow,dCsrValA, dCsrRowPtrA, dCsrColIndA);
+// Perform matrix-vector multiplication with the CSR-formatted matrix A
+cusparseScsrmv(handle, CUSPARSE_OPERATION_NON_TRANSPOSE,M, N, totalNnz, &alpha, descr, dCsrValA, dCsrRowPtrA,dCsrColIndA, dX, &beta, dY);
+// Copy the result vector back to the host
+cudaMemcpy(Y, dY, sizeof(float) * M, cudaMemcpyDeviceToHost);
+```
 
 - 1 使用cusparseCreate创建库的handle。
 - 2 使用cudaMalloc分配device内存空间用来存储矩阵和向量，并分别使用dense和CSR两种格式存储。

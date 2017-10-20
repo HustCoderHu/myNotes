@@ -1,3 +1,3 @@
-ÊäÈëÍ¼Æ¬¶àÍ¨µÀ
-¾í»ıºË k * k * C
+è¾“å…¥å›¾ç‰‡å¤šé€šé“
+å·ç§¯æ ¸ k * k * C
 [CaffeCN](http://www.caffecn.cn/?/question/158)

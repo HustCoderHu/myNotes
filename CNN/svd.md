@@ -1,5 +1,5 @@
-## SVD ÆæÒìÖµ·Ö½â
+## SVD å¥‡å¼‚å€¼åˆ†è§£
 [this](https://www.zhihu.com/question/22237507)
 [this](http://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html)
 
-µÍÖÈ½üËÆ£¬ÌØÕ÷½µÎ¬
+ä½ç§©è¿‘ä¼¼ï¼Œç‰¹å¾é™ç»´
