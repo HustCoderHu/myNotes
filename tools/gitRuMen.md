@@ -1,4 +1,5 @@
-转自 [这里](https://github.com/uniqueyehu/blog/blob/master/blogmd/git.md)
+转自  
+<https://github.com/uniqueyehu/blog/blob/master/blogmd/git.md>
 
 # 写在前面的话
 有些东西如果不经常使用的话，很快就容易忘记，我们记得很熟悉的一般都是平时使用得很频繁的，命令也好，快捷键也罢，都是如此。记录一下Git的使用，免得哪天自己又忘记了，可以回过头来看看 :smile:

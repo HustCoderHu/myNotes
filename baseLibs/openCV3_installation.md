@@ -1,11 +1,11 @@
-ubuntu1404 安装 opencv3
---- 
+ubuntu1404 安装 caffe 使用的 opencv3
+---
+# 1 opencv3安装
+
 ```
 apt install cmake libjpeg-dev libpng-dev
 cd opencv
 mkdir build && cd build
-
-
 
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D BUILD_opencv_gpu=OFF \
@@ -42,26 +42,19 @@ make install
 ```
 可以 make uninstall 之后再 install
 
-cmake如果成功,就会详细的模块配置
+cmake如果成功,会显示详细的模块配置
 ```
 General configuration for OpenCV 3.3.0 =======
 ...
 OpenCV modules
 To be built:                 cudev core imgproc imgcodecs python2
 ```
-
 因为很多模块 Disabled,所以编译时间不长
 
-如果cmake遇到 
-```
-"FATAL: In-source builds are not allowed.
-You should create separate directory for build files."
-then rm CMakeCache.txt -f
-```
-参考["In-source builds are not allowed" in cmake](https://stackoverflow.com/questions/45518317/in-source-builds-are-not-allowed-in-cmake)  
-解决之后，cmake再来一次
-
-install 完之后把 build/lib 的绝对路径加到 caffe 的 Makefile.config 的 LIBRARY_DIRS 后面  
+# 2 caffe 库路径配置
+opencv默认安装到 /usr/lib 下  
+caffe 的 Makefile.config 的 LIBRARY_DIRS 不需要修改  
+如果 opencv 指定了安装路径，即使把路径加到了 LIBRARY_DIRS caffe编译或者runtest也会出问题
 then
 ```
 make clean
@@ -88,24 +81,41 @@ collect2: error: ld returned 1 exit status
 make: *** [.build_release/lib/libcaffe.so.1.0.0] Error 1
 ```
 
-caffe runtest 的时候
-如果提示 error while loading shared libraries opencv
-就先 看下 /usr/lib下有没有 相应lib
-没有的话有两种解决办法
+
+
+# 3 错误排查
+## 3.1 opencv cmake 错误
+```
+"FATAL: In-source builds are not allowed.
+You should create separate directory for build files."
+then rm CMakeCache.txt -f
+```
+参考["In-source builds are not allowed" in cmake](https://stackoverflow.com/questions/45518317/in-source-builds-are-not-allowed-in-cmake)  
+解决之后，cmake再来一次
+
+## 3.2 tools/caffe: runtest error while loading shared libraries opencv
+先看下 /usr/lib下有没有相应的 lib，没有的话有两种解决办法
+
 **1 软链接**
+
 软链接到 /usr/lib，比如
 ```
 ln -s /home/cnn/Downloads/opencv-3.3.0/build/lib/libopencv_core.so.3.3 /usr/lib/
 ```
-**2 链接的配置文件**
+
+**2 ld的配置文件**
+
 类似cuda的处理办法
-[issues](https://github.com/GaoHongchen/DIPDemoQt5/issues/1)
+```
+echo "path/to/theLib" > /etc/ld.so.conf.d/opencv.conf
+sudo ldconfig -v
+```
+<https://github.com/GaoHongchen/DIPDemoQt5/issues/1>
 
 
 # 参考
-http://www.cnblogs.com/freeweb/p/7509480.html
-https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html
-
-http://blog.csdn.net/youngpan1101/article/details/58027049
-
-[模块介绍](https://docs.opencv.org/master/d9/df8/tutorial_root.html)
+<http://www.cnblogs.com/freeweb/p/7509480.html>
+<https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html>
+<http://blog.csdn.net/youngpan1101/article/details/58027049>  
+模块介绍  
+<https://docs.opencv.org/master/d9/df8/tutorial_root.html>
