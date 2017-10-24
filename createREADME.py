@@ -2,53 +2,43 @@
 import os 
 import os.path as path
 
-def main ():
-    # file_name(os.getcwd())
-    # file = "E:\github_repo\CodingPractice\hosted_network\service_opt\service_opt.pro"
-    # file = "E:\github_repo\CodingPractice\hosted_network\service_opt"
-    # testRelpath(file)
-    # level 0
-    nodeList = []
-    baseDir = "E:\github_repo\CodingPractice\CppPrimer"
-    
-    
-    
-    # createMD(nodeList, baseDir)
-    # for aNode in nodeList:
-        # print(aNode)
-    
-    toc = []
-    dir = "E:\\github_repo\\CodingPractice\\CppPrimer\\chapter_12\\build-Debug"
-    # dir = "E:/github_repo/CodingPractice/CppPrimer/chapter_12/build-Debug"
-    # add2Toc(toc, dir)
-    recurMD(toc, os.getcwd(), 1)
+toc = []
 
+def main ():
+    # recurMD(os.getcwd(), 1, "", 1)
+    nonRecurs(os.getcwd(), toc)
     with open('README.md', 'wt') as f:
         for one in toc: 
             one = one.replace("\\", "/") # github 的路径用 / 分隔
             f.write(one + "\n")
-            # print(one)
+            print(one)
             
-    
-    
-    
     # toc.append("myNotes")
     # toc.append("---")
     
     pass
 
 
-# def recurMD(toc, baseDir, level, headersOrder):
-def recurMD(toc, baseDir, level):
+# str, int, str, int
+def recurMD(baseDir, level, parentOrder, subOrder):
+# def recurMD(toc, baseDir, level):
     relPath = ""
     link = ""
     
-    relPath = path.basename(baseDir) # get folder name
-    # relPath = path.split(baseDir)[-1]
-    # relPath = baseDir.split("\\")[-1]
-    toc.append("#" * level + " " + relPath)
-    # relPath = path.relpath(baseDir)
-    # toc.append("#" * level + " " + str(level) + " " + relPath)
+    if level > 1: 
+        # relPath = path.basename(baseDir) # get folder name
+        # relPath = path.split(baseDir)[-1]
+        # relPath = baseDir.split("\\")[-1]
+        
+        parentOrder += "." + str(subOrder)
+        
+        relPath = "#" * level
+        relPath += " " + parentOrder
+        relPath += " " + path.basename(baseDir) # get folder name
+
+        toc.append(relPath)
+        # relPath = path.relpath(baseDir)
+        # toc.append("#" * level + " " + str(level) + " " + relPath)
 
     nodeList = os.listdir(baseDir)
     forwardDir = []
@@ -64,31 +54,74 @@ def recurMD(toc, baseDir, level):
         else : 
             forwardDir.append(fullPath)
     
+    _subOrder = 1
     for aDir in forwardDir: 
-        recurMD(toc, aDir, level+1)
+        recurMD(aDir, level+1, parentOrder, _subOrder)
+        _subOrder += 1
     return
 
-def createMD(toc, baseDir, level=1): 
-    # toc = []    # line per item
+def nonRecurs(baseDir, _toc):
+    # str dir, int level, str parentOrder, int _subOrder
     stack = []
-    # 
-    stack.append(baseDir)
+    
+    level = 2
+    parentOrder = ""
+    
+    nodeList = os.listdir(baseDir)
+    forwardDir = []
+    # 遍历这个目录
+    for aNode in nodeList: 
+        fullPath = path.join(baseDir, aNode)
+        if path.isfile(fullPath): 
+            relPath = path.relpath(fullPath)
+            link = "- [" + aNode + "]" + \
+                "(" + relPath +")"
+            _toc.append(link)
+        elif aNode == ".git": 
+            continue
+        else : 
+            forwardDir.append(fullPath)
+    _subOrder = len(forwardDir)
+    for aDir in reversed(forwardDir):
+        stack.append([aDir, level, "", _subOrder])
+        _subOrder -= 1
+    
+    
     while len(stack) > 0: 
-        # node = stack[-1]
-        node = stack.pop()
-        toc.append(node)
-        nodeList = os.listdir(node)
+        baseDir, level, parentOrder, _subOrder = stack.pop()
+
+        # 构造 header
+        if level > 2: 
+            thisOrder = parentOrder + "." + str(_subOrder)
+        else :
+            thisOrder = str(_subOrder)
+        header = "#" * level
+        header += " " + thisOrder
+        header += " " + path.basename(baseDir)
+        # 放入目录
+        _toc.append(header)
+        
+        nodeList = os.listdir(baseDir)
         forwardDir = []
+        # 遍历这个目录
         for aNode in nodeList: 
-            fullPath = path.join(node, aNode)
+            fullPath = path.join(baseDir, aNode)
             if path.isfile(fullPath): 
-                toc.append(fullPath)
+                relPath = path.relpath(fullPath)
+                link = "- [" + aNode + "]" + \
+                    "(" + relPath +")"
+                _toc.append(link)
             else : 
                 forwardDir.append(fullPath)
-        stack.extend(reversed(forwardDir)) # 遍历需要反字母序压栈
+        _subOrder = len(forwardDir)
+        # 反字母序压栈
+        for aDir in reversed(forwardDir):
+            stack.append([aDir, level+1, thisOrder, _subOrder])
+            _subOrder -= 1
+        continue 
+    # end while len(stack) > 0
     return
 
-# 
 # def file_name(file_dir):   
     # for root, dirs, files in os.walk(file_dir):  
         # print(root) #当前目录路径
@@ -101,21 +134,6 @@ def createMD(toc, baseDir, level=1):
 def testRelpath(file): 
     ppp = os.path.relpath(file) # 相对.py 的路径
     print(ppp)
-    return
-
-def add2Toc(toc, nod): 
-    print(nod)
-    relPath = ""
-    if path.isdir(nod):
-        relPath = path.relpath(nod)
-    else :
-        print("not dir")
-    print(path.relpath(nod))
-    relPath.replace("\\", "/")
-    cnt = relPath.count("/")
-    print(relPath)
-    toc.append("#"*(1+cnt) + " " + relPath)
-    print(toc)
     return
 
 if __name__=="__main__":
