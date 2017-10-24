@@ -38,14 +38,18 @@ def main ():
     pass
 
 
-def recurMD(toc, baseDir, level=1):
+# def recurMD(toc, baseDir, level, headersOrder):
+def recurMD(toc, baseDir, level):
     relPath = ""
     link = ""
-    if level > 1: 
-        relPath = baseDir.split("\\")
-        toc.append("#" * level + " " + baseDir.split("\\")[-1])
-        # relPath = path.relpath(baseDir)
-        # toc.append("#" * level + " " + str(level) + " " + relPath)
+    
+    relPath = path.basename(baseDir) # get folder name
+    # relPath = path.split(baseDir)[-1]
+    # relPath = baseDir.split("\\")[-1]
+    toc.append("#" * level + " " + relPath)
+    # relPath = path.relpath(baseDir)
+    # toc.append("#" * level + " " + str(level) + " " + relPath)
+
     nodeList = os.listdir(baseDir)
     forwardDir = []
     for aNode in nodeList: 
