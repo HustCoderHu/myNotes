@@ -25,7 +25,10 @@ def main ():
 
     with open('README.md', 'wt') as f:
         for one in toc: 
+            one = one.replace("\\", "/") # github 的路径用 / 分隔
             f.write(one + "\n")
+            # print(one)
+            
     
     
     
@@ -39,9 +42,10 @@ def recurMD(toc, baseDir, level=1):
     relPath = ""
     link = ""
     if level > 1: 
-        relPath = path.relpath(baseDir)
+        relPath = baseDir.split("\\")
+        toc.append("#" * level + " " + baseDir.split("\\")[-1])
+        # relPath = path.relpath(baseDir)
         # toc.append("#" * level + " " + str(level) + " " + relPath)
-        toc.append("#" * level + " " + relPath)
     nodeList = os.listdir(baseDir)
     forwardDir = []
     for aNode in nodeList: 
