@@ -1,5 +1,5 @@
-# 插件
-## NppExec: 可以执行 py 脚本
+# 鎻掍欢
+## NppExec: 鍙互鎵ц py 鑴氭湰
 ```
 npp_save
 cd   $(CURRENT_DIRECTORY)
@@ -7,4 +7,4 @@ python $(NAME_PART).py
 ```
 
 ## Python Indent
-python 缩进
+python 缂╄繘
