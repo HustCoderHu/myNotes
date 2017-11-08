@@ -16,23 +16,24 @@
 ## 3 bishe
 - [README.md](bishe/README.md)
 ## 4 caffe
-- [1-å‡†å¤‡æ•°æ®.md](caffe/1-å‡†å¤‡æ•°æ®.md)
-- [alexnet-vggå•å›¾æµ‹è¯•.md](caffe/alexnet-vggå•å›¾æµ‹è¯•.md)
-- [classificationè§£æ.md](caffe/classificationè§£æ.md)
+- [1-×¼±¸Êı¾İ.md](caffe/1-×¼±¸Êı¾İ.md)
+- [alexnet-vggµ¥Í¼²âÊÔ.md](caffe/alexnet-vggµ¥Í¼²âÊÔ.md)
+- [classification½âÎö.md](caffe/classification½âÎö.md)
 - [conv_im2col_cpu.PNG](caffe/conv_im2col_cpu.PNG)
 - [im2col.md](caffe/im2col.md)
-- [å®éªŒæ­¥éª¤.md](caffe/å®éªŒæ­¥éª¤.md)
-- [æ·»åŠ layer.md](caffe/æ·»åŠ layer.md)
-- [æºç é˜…è¯».md](caffe/æºç é˜…è¯».md)
-- [ç”Ÿæˆå›¾ç‰‡é›†LMDB.md](caffe/ç”Ÿæˆå›¾ç‰‡é›†LMDB.md)
+- [ÊµÑé²½Öè.md](caffe/ÊµÑé²½Öè.md)
+- [Ìí¼Ólayer.md](caffe/Ìí¼Ólayer.md)
+- [Ô´ÂëÔÄ¶Á.md](caffe/Ô´ÂëÔÄ¶Á.md)
+- [Éú³ÉÍ¼Æ¬¼¯LMDB.md](caffe/Éú³ÉÍ¼Æ¬¼¯LMDB.md)
+- [µ÷ÓÃcaffe¿â.md](caffe/µ÷ÓÃcaffe¿â.md)
 ## 5 CNN
 - [channel.md](CNN/channel.md)
 - [organized.md](CNN/organized.md)
 - [README.md](CNN/README.md)
 - [referemce.md](CNN/referemce.md)
 - [svd.md](CNN/svd.md)
-- [åŠ é€Ÿ.md](CNN/åŠ é€Ÿ.md)
-- [ç¨€ç–.md](CNN/ç¨€ç–.md)
+- [¼ÓËÙ.md](CNN/¼ÓËÙ.md)
+- [Ï¡Êè.md](CNN/Ï¡Êè.md)
 ## 6 deepLearning
 - [RAEDME.md](deepLearning/RAEDME.md)
 ## 7 MachineLearning
@@ -44,7 +45,7 @@
 - [example2.c](math/example2.c)
 - [Matrix.md](math/Matrix.md)
 - [openblas.md](math/openblas.md)
-- [æ­£åˆ™åŒ–Regularizaiton.md](math/æ­£åˆ™åŒ–Regularizaiton.md)
+- [ÕıÔò»¯Regularizaiton.md](math/ÕıÔò»¯Regularizaiton.md)
 ## 9 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
 - [git-diff.md](tools/git-diff.md)
