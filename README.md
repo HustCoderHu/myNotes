@@ -22,6 +22,7 @@
 - [conv_im2col_cpu.PNG](caffe/conv_im2col_cpu.PNG)
 - [im2col.md](caffe/im2col.md)
 - [loss计算.md](caffe/loss计算.md)
+- [Net类输入输出.md](caffe/Net类输入输出.md)
 - [实验步骤.md](caffe/实验步骤.md)
 - [添加layer.md](caffe/添加layer.md)
 - [源码阅读.md](caffe/源码阅读.md)
