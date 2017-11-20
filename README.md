@@ -18,6 +18,7 @@
 ## 4 caffe
 - [1-准备数据.md](caffe/1-准备数据.md)
 - [alexnet-vgg单图测试.md](caffe/alexnet-vgg单图测试.md)
+- [caffe_installation.md](caffe/caffe_installation.md)
 - [classification解析.md](caffe/classification解析.md)
 - [conv_im2col_cpu.PNG](caffe/conv_im2col_cpu.PNG)
 - [im2col.md](caffe/im2col.md)
