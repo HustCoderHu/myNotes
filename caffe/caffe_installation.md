@@ -27,8 +27,10 @@ LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/
 make -jn
 make test -jn
 make runtest -jn
-echo "/root/caffe/build/lib" > /etc/ld.so.conf.d/caffe.conf
-ldconfig
+# 非 root 用户 推荐
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/usr/caffe/build/lib" >> /home/usr/.bashrc
+# echo "/root/caffe/build/lib" > /etc/ld.so.conf.d/caffe.conf
+# ldconfig
 ```
 
 
