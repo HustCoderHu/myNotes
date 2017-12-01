@@ -53,18 +53,16 @@ A
 # tmux
 tmux 的快捷键和 screen 的有点类似，只是初始快捷键改为了 Ctrl+B：
 
-Ctrl-B-C ：创建新窗口；
-Ctrl-B-D ：detach窗口，和 screen 的类似；
-Ctrl-B-"  ：将当前窗口拆分为上下两行；
-Ctrl-B-%：将当前窗口拆分为左右两列；
-Ctrl-B-上下左右：切换 shell pane
+Ctrl-B-C ：创建新窗口；  
+Ctrl-B-D ：detach窗口，和 screen 的类似；  
+Ctrl-B-"  ：将当前窗口拆分为上下两行；  
+Ctrl-B-%：将当前窗口拆分为左右两列；  
+Ctrl-B-上下左右：切换 shell pane  
 
 # 后记
 github上面搜 tmux 可以搜到别人的一些配置，star 竟然还上 k
 
 # 参考
-Shell 输入/输出重定向  
-<http://www.runoob.com/linux/linux-shell-io-redirections.html>  
 linux screen 命令详解  
 <https://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html>  
 Tmux : GNU Screen 的替代品  

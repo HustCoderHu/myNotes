@@ -18,6 +18,7 @@
 ## 4 caffe
 - [1-准备数据.md](caffe/1-准备数据.md)
 - [alexnet-vgg单图测试.md](caffe/alexnet-vgg单图测试.md)
+- [alexnet单图测试.md](caffe/alexnet单图测试.md)
 - [caffe_installation.md](caffe/caffe_installation.md)
 - [classification解析.md](caffe/classification解析.md)
 - [conv_im2col_cpu.PNG](caffe/conv_im2col_cpu.PNG)
@@ -51,14 +52,15 @@
 - [Matrix.md](math/Matrix.md)
 - [openblas.md](math/openblas.md)
 - [正则化Regularizaiton.md](math/正则化Regularizaiton.md)
-## 9 ObjectDetection
-## 10 tools
+## 9 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
 - [code_win2linux.md](tools/code_win2linux.md)
 - [git-diff.md](tools/git-diff.md)
 - [git-stash.md](tools/git-stash.md)
 - [gitRuMen.md](tools/gitRuMen.md)
+- [linuxCommands.md](tools/linuxCommands.md)
+- [linux多终端.md](tools/linux多终端.md)
 - [Makefile.md](tools/Makefile.md)
 - [nppTricks.md](tools/nppTricks.md)
-### 10.1 python
+### 9.1 python
 - [README.md](tools/python/README.md)
