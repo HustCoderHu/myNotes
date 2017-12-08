@@ -15,8 +15,8 @@ ${CMD_1}
 # python createREADME.py
 
 echo -e "\e[42;37m ${CMD_2} \e[0m"
-echo ${CMD_2}
-set -x
+# echo ${CMD_2}
+# set -x
 git commit -m "\"$comment\""
 # ${CMD_2}
 
