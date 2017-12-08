@@ -6,7 +6,12 @@ sudo apt install libgflags-dev libgoogle-glog-dev liblmdb-dev
 ```
 
 ```
-echo "/opt/OpenBLAS" > /etc/ld.so.conf.d/openblas.conf
+cd /opt
+sudo git clone https://github.com/xianyi/OpenBLAS.git
+cd OpenBLAS
+sudo make -jn
+sudo make install
+echo "/opt/OpenBLAS/lib" > /etc/ld.so.conf.d/openblas.conf
 ldconfig
 # 准备配置
 cp Makefile.config.example Makefile.config
@@ -28,7 +33,7 @@ make -jn
 make test -jn
 make runtest -jn
 # 非 root 用户 推荐
-echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/usr/caffe/build/lib" >> /home/usr/.bashrc
+echo "export LD_LIBRARY_PATH=/home/usr/caffe/build/lib:$LD_LIBRARY_PATH" >> /home/usr/.bashrc
 # echo "/root/caffe/build/lib" > /etc/ld.so.conf.d/caffe.conf
 # ldconfig
 ```
