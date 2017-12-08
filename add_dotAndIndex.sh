@@ -17,7 +17,7 @@ ${CMD_1}
 echo -e "\e[42;37m ${CMD_2} \e[0m"
 echo ${CMD_2}
 set -x
-git commit -m "$comment"
+git commit -m "\"$comment\""
 # ${CMD_2}
 
 exit
