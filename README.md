@@ -2,6 +2,7 @@
 
 ---
 
+- [add_dotAndIndex.sh](add_dotAndIndex.sh)
 - [createREADME.py](createREADME.py)
 - [index_reference.md](index_reference.md)
 - [README.md](README.md)
