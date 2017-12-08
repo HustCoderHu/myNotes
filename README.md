@@ -54,19 +54,17 @@
 - [Matrix.md](math/Matrix.md)
 - [openblas.md](math/openblas.md)
 - [正则化Regularizaiton.md](math/正则化Regularizaiton.md)
-## 9 tools
+## 9 ObjectDetection
+## 10 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
 - [code_win2linux.md](tools/code_win2linux.md)
 - [git-diff.md](tools/git-diff.md)
 - [git-stash.md](tools/git-stash.md)
 - [gitRuMen.md](tools/gitRuMen.md)
-<<<<<<< HEAD
 - [jenkins.md](tools/jenkins.md)
-=======
 - [linuxCommands.md](tools/linuxCommands.md)
 - [linux多终端.md](tools/linux多终端.md)
->>>>>>> 92942ed82ed049cd74e5a10a0dee6f1aadd38fa5
 - [Makefile.md](tools/Makefile.md)
 - [nppTricks.md](tools/nppTricks.md)
-### 9.1 python
+### 10.1 python
 - [README.md](tools/python/README.md)
