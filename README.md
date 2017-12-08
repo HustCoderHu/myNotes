@@ -44,6 +44,7 @@
 ## 7 MachineLearning
 - [OnlineLearning.md](MachineLearning/OnlineLearning.md)
 - [README.md](MachineLearning/README.md)
+- [reinforcementLearning.md](MachineLearning/reinforcementLearning.md)
 ## 8 math
 - [cuBLAS.md](math/cuBLAS.md)
 - [cuSparse.md](math/cuSparse.md)
@@ -58,6 +59,7 @@
 - [git-diff.md](tools/git-diff.md)
 - [git-stash.md](tools/git-stash.md)
 - [gitRuMen.md](tools/gitRuMen.md)
+- [jenkins.md](tools/jenkins.md)
 - [Makefile.md](tools/Makefile.md)
 - [nppTricks.md](tools/nppTricks.md)
 ### 10.1 python
