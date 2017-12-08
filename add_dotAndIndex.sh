@@ -20,8 +20,6 @@ echo -e "\e[42;37m ${CMD_2} \e[0m"
 git commit -m "\"$comment\""
 # ${CMD_2}
 
-exit
-
 echo -e "\e[42;37m ${CMD_3} \e[0m"
 ${CMD_3}
 # echo $1
