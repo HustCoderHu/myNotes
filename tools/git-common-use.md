@@ -35,6 +35,7 @@ git reset --hard HEAD  # 完全丢弃改动
 fork 别人的repo后，如果上游repo更新了，很自然我们这个最好也跟着
 
 ```
+# 
 git remote add [shortname] [url]    # 添加remote
 git fetch [remote-name]   # 从远程仓库抓取数据
 git rebase [-i] localBranch     # -i 会把commit 显示出来，可以自己调整
