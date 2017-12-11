@@ -18,7 +18,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D BUILD_opencv_contrib=OFF \
 -D BUILD_opencv_features2d=OFF \
 -D BUILD_opencv_flann=OFF \
--D BUILD_opencv_highgui=OFF \ # caffe need this on, just delete it
+-D BUILD_opencv_highgui=ON \
 -D BUILD_opencv_ml=OFF \
 -D BUILD_opencv_nonfree=OFF \
 -D BUILD_opencv_objdetect=OFF \
@@ -37,10 +37,10 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D BUILD_opencv_dnn=OFF \
 -D WITH_IPP=OFF \
 ..
-
 make -j8
 make install
 ```
+
 可以 make uninstall 之后再 install
 
 cmake如果成功,会显示详细的模块配置
@@ -50,6 +50,9 @@ General configuration for OpenCV 3.3.0 =======
 OpenCV modules
 To be built:                 cudev core imgproc imgcodecs python2
 ```
+opencv3 常用的模块是 core imgproc imgcodecs highgui python2  
+opencv3 中的imread从 imgproc 移到 imgcodecs 中了  
+highgui 是caffe ncnn会用到的  
 因为很多模块 Disabled,所以编译时间不长
 
 # 2 caffe 库路径配置
