@@ -41,7 +41,7 @@ git fetch [remote-name]   # 从远程仓库抓取数据
 git rebase [-i] localBranch     # -i 会把commit 显示出来，可以自己调整
 # rebase最大的好处是你的项目历史会非常整洁。首先，它不像 git merge 那样引入不必要的合并提交。
 ```
-
+<http://bluebiu.com/blog/learn-git-rebase.html>
 
 **参考**  
 5 Git 基础 - 远程仓库的使用  

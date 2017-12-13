@@ -58,8 +58,10 @@
 ## 10 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
 - [code_win2linux.md](tools/code_win2linux.md)
+- [git-common-use.md](tools/git-common-use.md)
 - [git-diff.md](tools/git-diff.md)
 - [git-stash.md](tools/git-stash.md)
+- [gitFlow.md](tools/gitFlow.md)
 - [gitRuMen.md](tools/gitRuMen.md)
 - [jenkins.md](tools/jenkins.md)
 - [linuxCommands.md](tools/linuxCommands.md)
