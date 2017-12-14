@@ -19,7 +19,8 @@ git push -f # be careful， 强行覆盖自己github上 的当前分支
 如果要开始开发，新开一个分支
 ```
 git checkout -b BRANCH_NAME # 本地新建一个分支用来添加代码
-git push origin BRANCH_NAME # 将这个分支推到 github 上 (新建分支)
+git push -u origin BRANCH_NAME # 将这个分支推到 github 上 (新建分支)
+# -u 表示 远程分支作为 upstream，pull和push都会对应
 git rebase -i REMOTE_NAME/BRANCH # 将上游的 BRANCH 分支并到当前操作的分支
 git rebase -i master # 将本地的master分支并到当前分支
 ```
