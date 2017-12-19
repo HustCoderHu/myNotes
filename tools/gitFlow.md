@@ -9,6 +9,7 @@ git remote -v # 查看remote
 
 如果上游更新了，下面操作会更新github上自己的fork，因为用的不是merge，所以不会有合并的commit
 ```
+git fetch REMOTE_NAME  # 先拉一下上游的代码
 git checkout master # 切换到本地 master
 git rebase -i REMOTE_NAME/master # 交互式 将REMOTE_NAME的master提交并到当前的分支, 
 # 就是上面checkout的
