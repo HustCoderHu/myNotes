@@ -13,7 +13,8 @@
 #### 1.1.1 bbb
 - [README.md](algorithm/aaa/bbb/README.md)
 ## 2 baseLibs
-- [openCV3_installation.md](baseLibs/openCV3_installation.md)
+- [openCV3_with_mingw64.md](baseLibs/openCV3_with_mingw64.md)
+- [ubuntu_openCV3_installation.md](baseLibs/ubuntu_openCV3_installation.md)
 ## 3 bishe
 - [README.md](bishe/README.md)
 ## 4 caffe
