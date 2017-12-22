@@ -55,10 +55,12 @@
 - [Matrix.md](math/Matrix.md)
 - [openblas.md](math/openblas.md)
 - [正则化Regularizaiton.md](math/正则化Regularizaiton.md)
-## 9 ObjectDetection
+## 9 TensorFlow
+- [tf_by_docker.md](TensorFlow/tf_by_docker.md)
 ## 10 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
 - [code_win2linux.md](tools/code_win2linux.md)
+- [dockerIntro.md](tools/dockerIntro.md)
 - [git-common-use.md](tools/git-common-use.md)
 - [git-diff.md](tools/git-diff.md)
 - [git-stash.md](tools/git-stash.md)
