@@ -31,7 +31,7 @@ logout 然后 login 使之生效
 {
   "registry-mirrors": [
     "https://registry.docker-cn.com"
-  ]
+  ],
   "dns": [
     "114.114.114.114", "8.8.8.8"
   ]
@@ -81,6 +81,18 @@ docker container prune  # 清理掉所有处于终止状态的容器
 docker exec -it ID bash  # 进入运行中的容器，即使不是后台运行的
 ```
 
+## 6 导入导出
+### 不要镜像历史
+```
+docker export ID > TAR
+cat TAR | docker import - REPOSITORY:TAG # 从导出的机器里面抄过来就ok
+```
+### 需要镜像历史
+```
+docker save ID > TAR
+docker load < TAR
+docker tag ID REPOSITORY:TAG  # 标记一下
+```
 
 
 # 常见问题
