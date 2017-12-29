@@ -1,6 +1,26 @@
 ubuntu 1604 上通过 docker 运行tensorflow
+
+# GPU 模式
+## 驱动
+下载独立的驱动 runfile，直接用cuda8的驱动会出现找不到gpu的问题
+
+## CUDA 8
+
+## CuDNN
+
+
 # 安装 docker
+## docker-ce 
 参考 [dockerIntro](tools/dockerIntro.md)
+
+## nv docker
+下载4个东西，github nvidia团队里有
+- libnvidia-container
+- libnvidia-container-tools
+- nvidia-container-runtime
+- nvidia-docker2*.deb
+<https://github.com/NVIDIA/libnvidia-container/tree/gh-pages/ubuntu16.04/amd64>  
+<https://github.com/NVIDIA/nvidia-docker/tree/gh-pages/ubuntu16.04/amd64>
 
 # 准备各种东西
 ## 1 下载 img
@@ -16,6 +36,12 @@ mv tensorflow-master tensorflow
 
 # 启动容器
 ```
+docker run -ti --runtime=nvidia --rm \
+--mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
+--mount type=bind,source=/etc/apt/sources.list,target=/etc/apt/sources.list,readonly \
+--mount type=bind,source=/home/hzx,target=/home/hzx \
+tensorflow/tensorflow:latest-gpu bash
+
 docker run -di \
 --mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
 --mount type=bind,source=/etc/apt/sources.list,target=/etc/apt/sources.list,readonly \
