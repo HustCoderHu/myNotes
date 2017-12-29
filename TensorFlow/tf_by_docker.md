@@ -19,8 +19,7 @@ mv tensorflow-master tensorflow
 docker run -di \
 --mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
 --mount type=bind,source=/etc/apt/sources.list,target=/etc/apt/sources.list,readonly \
---mount type=bind,source=/home/xiaohu/tensorflow,target=/home/tensorflow \
---mount type=bind,source=/home/xiaohu/tftest,target=/home/tftest \
+--mount type=bind,source=/home/xiaohu,target=/home/xiaohu \
 tensorflow/tensorflow bash
 ```
 - 第1个挂载的是主机的时间 readonly 方式，dockerIntro里提到过

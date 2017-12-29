@@ -16,6 +16,15 @@ Ubuntu version -> pool/stable/ -> amd64 选好的下载，并安装
 ```
 sudo dpkg -i docker.deb
 ```
+
+## nv docker
+下载3个东西
+- libnvidia-container-tools
+- nvidia-container-runtime
+- nvidia-docker2*.deb
+<https://github.com/NVIDIA/libnvidia-container/tree/gh-pages/ubuntu16.04/amd64>  
+<https://github.com/NVIDIA/nvidia-docker/tree/gh-pages/ubuntu16.04/amd64>
+
 ## 镜像源等一些设置
 如果 `sudo groupadd docker` 提示已经有这个组，说明已经被创建了  
 默认会创建一个名为docker的 group 键入`cat /etc/group | grep docker` 可以看到，  
@@ -33,7 +42,7 @@ logout 然后 login 使之生效
     "https://registry.docker-cn.com"
   ],
   "dns": [
-    "114.114.114.114", "8.8.8.8"
+    "223.5.5.5",  "223.6.6.6"
   ]
 }
 ```
