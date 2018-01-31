@@ -57,8 +57,10 @@
 - [正则化Regularizaiton.md](math/正则化Regularizaiton.md)
 ## 9 ObjectDetection
 ## 10 TensorFlow
+- [save_and_restore.md](TensorFlow/save_and_restore.md)
 - [tf_by_docker.md](TensorFlow/tf_by_docker.md)
 - [tf_obj_detection.md](TensorFlow/tf_obj_detection.md)
+- [todo.md](TensorFlow/todo.md)
 ## 11 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
 - [code_win2linux.md](tools/code_win2linux.md)
