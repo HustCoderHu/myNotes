@@ -56,7 +56,8 @@
 - [openblas.md](math/openblas.md)
 - [正则化Regularizaiton.md](math/正则化Regularizaiton.md)
 ## 9 TensorFlow
-- [data_prepare.md](TensorFlow/data_prepare.md)
+- [build_tfrecord.md](TensorFlow/build_tfrecord.md)
+- [DatasetFromManyImages.md](TensorFlow/DatasetFromManyImages.md)
 - [save_and_restore.md](TensorFlow/save_and_restore.md)
 - [tf_by_docker.md](TensorFlow/tf_by_docker.md)
 - [tf_obj_detection.md](TensorFlow/tf_obj_detection.md)
