@@ -151,11 +151,18 @@ next_one = _iter.get_next() # type: tuple
 ```
 img, label = next_one
 # tf 1.4 这个tensor没有dim的信息，各种op都报dim的错误
+# 一般会报 channel 最后这个维度为 None
 # 必须加这个reshape
+out.set_shape([-1, -1, -1, 3])
 out = tf.reshape(img, [-1, h, w, c])
 out = tf.reduce_mean(out, axis=(1, 2)) # channels last
 # out shape: (n, c)
 ```
+
+```
+ValueError: The channel dimension of the inputs should be defined. Found `None`.
+```
+
 
 下面的代码来自google，每个epoch后可以统计些信息
 注意如果batch不能整除整个数据集，末尾就会有些数据漏掉
