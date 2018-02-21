@@ -52,7 +52,7 @@ after_create_session(
     coord
 )
 ```
-ession 创建时会被调用, 和下面的begin有两个区别  
+session 创建时会被调用, 和下面的begin有两个区别  
 - 1 这个执行之后，图就确定了，不能再加op了
 - 2 恢复被封装的session调用之后也会调用这个，不只是 整体的session
 
@@ -84,6 +84,16 @@ begin()
 ```
 end()
 ```
+
+## EvalHook
+我们参考类 SummarySaverHook 还有官方model  
+`tensorflow/models/tutorials/image/cifar10/cifar10_train.py` 里的 class _LoggerHook  
+实现一个Eval钩子函数，用来周期性的在验证集上测试loss和acc
+
+```
+class EvalHook(tf.)
+```
+
 # 1 MonitoredTrainingSession
 # 1.1 构造函数
 ``` py
