@@ -34,7 +34,7 @@ logout 然后 login 使之生效
     "https://registry.docker-cn.com"
   ],
   "dns": [
-    "223.5.5.5",  "223.6.6.6"
+    "114.114.114.114", "223.5.5.5",  "223.6.6.6"
   ]
 }
 ```
@@ -51,11 +51,27 @@ sudo systemctl restart docker
 重试helloword 应该就会看到提示信息
 
 # 常用命令
-## 1 ps
+## 1 pull
+``` sh
+docker pull IMAGE
+```
+上面没法直接指定源，可以用run替代
+``` sh
+docker run IMAGE --registry-mirror=https://docker.mirrors.ustc.edu.cn
+# https://registry.docker-cn.com
+```
+registry指定镜像源
+
+## 2 images
+```
+docker images # 查看已有镜像
+```
+
+## 3 ps
 ```
 docker ps [-a] # 查看容器 -a会把已经停止的显示出来
 ```
-## 2 run
+## 4 run
 ```
 docker run -it --rm \
     ubuntu:16.04 \
@@ -66,30 +82,82 @@ docker run -it --rm \
 - ubuntu:16.04：这是指用 ubuntu:16.04 镜像为基础来启动容器。
 - bash：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 bash
 - -d ，这里没有用，表示后台运行 输出结果可以用 `docker logs [OPTIONS] CONTAINER` 看
-## 3 stop
+
+## 5 stop
 ```
 docker stop ID(前面几位就ok了)  # 停止运行中的容器
 docker start ID  # 可以启动那些已经停止的
 ```
-## 4 删除
+
+## 6 start
+```
+docker start [OPTIONS] CONTAINER [CONTAINER...]
+Options:
+  -a, --attach               Attach STDOUT/STDERR and forward signals
+      --detach-keys string   Override the key sequence for detaching a container
+      --help                 Print usage
+  -i, --interactive          Attach container's STDIN
+```
+- i 和run的效果类似，直接开始输入，否则就启动到后台了，和`run -d`的效果一样，  
+后续的执行内容就可以用`exec 容器ID COMMAND`一次执行一点，用完之后 `stop`
+
+## 7 删除
 ```
 docker rm ID  # 删除容器
 docker container prune  # 清理掉所有处于终止状态的容器
 ```
 
-## 5 exec
+## 8 exec
 ```
+docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+Options:
+  -d, --detach               Detached mode: run command in the background
+      --detach-keys string   Override the key sequence for detaching a container
+  -e, --env list             Set environment variables
+      --help                 Print usage
+  -i, --interactive          Keep STDIN open even if not attached
+      --privileged           Give extended privileges to the command
+  -t, --tty                  Allocate a pseudo-TTY
+  -u, --user string          Username or UID (format: <name|uid>[:<group|gid>])
+工作路径可以执行一次pwd看到
+
 docker exec -it ID bash  # 进入运行中的容器，即使不是后台运行的
 ```
 
-## 6 导入导出
-### 不要镜像历史
+## 9 导入导出
+分两种
+### 1) 不要镜像历史
+其实也可以导出镜像
 ```
+docker export [OPTIONS] CONTAINER
+Export a container's filesystem as a tar archive
+Options:
+      --help            Print usage
+  -o, --output string   Write to a file, instead of STDOUT
+
 docker export ID > TAR
+# 或者
+docker export -o FILE CONTAINER
+
 cat TAR | docker import - REPOSITORY:TAG # 从导出的机器里面抄过来就ok
 ```
-### 需要镜像历史
+
+### 2) 需要镜像历史
 ```
+# --- 导出
+docker save [OPTIONS] IMAGE [IMAGE...]
+Save one or more images to a tar archive (streamed to STDOUT by default)
+Options:
+      --help            Print usage
+  -o, --output string   Write to a file, instead of STDOUT
+# --- 载入
+docker load [OPTIONS]
+Load an image from a tar archive or STDIN
+Options:
+      --help           Print usage
+  -i, --input string   Read from tar archive file, instead of STDIN
+  -q, --quiet          Suppress the load output
+
 docker save ID > TAR
 docker load < TAR
 docker tag ID REPOSITORY:TAG  # 标记一下
@@ -120,3 +188,9 @@ docker 中国
 <https://docs.docker-cn.com/engine/installation/linux/docker-ce/ubuntu>  
 Get Docker CE for Ubuntu  
 <https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/>  
+Docker 镜像源的修改方式  
+<https://airycanon.me/docker-jing-xiang-yuan-de-xiu-gai-fang-shi/>  
+Docker 中国官方镜像加速  
+<https://www.docker-cn.com/registry-mirror>  
+Docker Hub 源使用帮助  
+<http://mirrors.ustc.edu.cn/help/dockerhub.html>  
