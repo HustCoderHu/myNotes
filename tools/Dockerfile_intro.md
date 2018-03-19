@@ -9,6 +9,9 @@ MAINTAINER HustCoderHu <coderhzx@gmail.com>
 
 RUN rm /etc/apt/sources.list.d/*
 # RUN rm /etc/apt/sources.list.d/cuda.list
+# ubuntu 修改时区
+RUN echo "Asia/Shanghai" > /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata
 
 COPY sources.list /etc/apt/ # 源自己看情况选
 # 教育网用清华，其他网就用网易或者阿里
@@ -78,3 +81,5 @@ nvidia/cuda
 <https://hub.docker.com/r/nvidia/cuda/>  
 CUDA / Docker & GPG error  
 <https://github.com/NVIDIA/nvidia-docker/issues/619>  
+Docker 中如何设置 container 的时区  
+<https://brickyang.github.io/2017/03/16/Docker%20%E4%B8%AD%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20container%20%E7%9A%84%E6%97%B6%E5%8C%BA/>
