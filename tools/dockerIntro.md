@@ -159,7 +159,8 @@ Options:
   -q, --quiet          Suppress the load output
 
 docker save ID > TAR
-docker load < TAR
+docker save ID | xz -zc > name.tar.xz # 有的镜像可能很大，压缩一下
+docker load < TAR # xz 也可以
 docker tag ID REPOSITORY:TAG  # 标记一下
 ```
 
