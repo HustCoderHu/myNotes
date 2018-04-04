@@ -49,20 +49,28 @@
 - [RAEDME.md](deepLearning/RAEDME.md)
 - [数据增强之图像.md](deepLearning/数据增强之图像.md)
 - [起火预测.md](deepLearning/起火预测.md)
-## 7 MachineLearning
+## 7 Java
+- [ArrayList.md](Java/ArrayList.md)
+- [BlockingQueue.md](Java/BlockingQueue.md)
+- [ConcurrentHashMap.md](Java/ConcurrentHashMap.md)
+- [HashMap.md](Java/HashMap.md)
+- [springmvc.md](Java/springmvc.md)
+## 8 LinuxKernel
+- [进程调度.md](LinuxKernel/进程调度.md)
+## 9 MachineLearning
 - [OnlineLearning.md](MachineLearning/OnlineLearning.md)
 - [README.md](MachineLearning/README.md)
 - [reinforcementLearning.md](MachineLearning/reinforcementLearning.md)
-## 8 math
+## 10 math
 - [cuBLAS.md](math/cuBLAS.md)
 - [cuSparse.md](math/cuSparse.md)
 - [example2.c](math/example2.c)
 - [Matrix.md](math/Matrix.md)
 - [openblas.md](math/openblas.md)
 - [正则化Regularizaiton.md](math/正则化Regularizaiton.md)
-## 9 ObjectDetection
+## 11 ObjectDetection
 - [intro.md](ObjectDetection/intro.md)
-## 10 TensorFlow
+## 12 TensorFlow
 - [build_tfrecord.md](TensorFlow/build_tfrecord.md)
 - [DatasetFromManyImages.md](TensorFlow/DatasetFromManyImages.md)
 - [save_and_restore.md](TensorFlow/save_and_restore.md)
@@ -71,7 +79,7 @@
 - [todo.md](TensorFlow/todo.md)
 - [train.MonitoredSession.md](TensorFlow/train.MonitoredSession.md)
 - [从零开始的Estimator(一).md](TensorFlow/从零开始的Estimator(一).md)
-## 11 tools
+## 13 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
 - [code_win2linux.md](tools/code_win2linux.md)
 - [Dockerfile_intro.md](tools/Dockerfile_intro.md)
@@ -86,5 +94,7 @@
 - [linux多终端.md](tools/linux多终端.md)
 - [Makefile.md](tools/Makefile.md)
 - [nppTricks.md](tools/nppTricks.md)
-### 11.1 python
+### 13.1 python
 - [README.md](tools/python/README.md)
+## 14 ubuntu
+- [trouble_shot.md](ubuntu/trouble_shot.md)
