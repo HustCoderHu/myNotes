@@ -52,9 +52,15 @@
 ## 7 Java
 - [ArrayList.md](Java/ArrayList.md)
 - [BlockingQueue.md](Java/BlockingQueue.md)
+- [ConcurrentHashMap.md](Java/ConcurrentHashMap.md)
 - [HashMap.md](Java/HashMap.md)
 - [springmvc.md](Java/springmvc.md)
 ## 8 LinuxKernel
+- [Nginx.md](LinuxKernel/Nginx.md)
+- [ptmalloc.md](LinuxKernel/ptmalloc.md)
+- [README.md](LinuxKernel/README.md)
+- [内存管理.md](LinuxKernel/内存管理.md)
+- [分页.md](LinuxKernel/分页.md)
 - [进程调度.md](LinuxKernel/进程调度.md)
 ## 9 MachineLearning
 - [OnlineLearning.md](MachineLearning/OnlineLearning.md)
