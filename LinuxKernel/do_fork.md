@@ -72,4 +72,6 @@ struct mm_struct {
 
 # reference
 switch_mm()  
-<https://blog.csdn.net/kernel_details/article/details/1484230>
+<https://blog.csdn.net/kernel_details/article/details/1484230>  
+
+<https://blog.csdn.net/gatieme/article/details/51484562>  
