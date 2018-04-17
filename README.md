@@ -52,7 +52,6 @@
 ## 7 Java
 - [ArrayList.md](Java/ArrayList.md)
 - [BlockingQueue.md](Java/BlockingQueue.md)
-- [ConcurrentHashMap.md](Java/ConcurrentHashMap.md)
 - [HashMap.md](Java/HashMap.md)
 - [springmvc.md](Java/springmvc.md)
 ## 8 linux
@@ -60,6 +59,7 @@
 ## 9 LinuxKernel
 - [do_fork.md](LinuxKernel/do_fork.md)
 - [README.md](LinuxKernel/README.md)
+- [slab.md](LinuxKernel/slab.md)
 - [内存管理.md](LinuxKernel/内存管理.md)
 - [分页.md](LinuxKernel/分页.md)
 - [进程调度.md](LinuxKernel/进程调度.md)
@@ -74,14 +74,16 @@
 - [Matrix.md](math/Matrix.md)
 - [openblas.md](math/openblas.md)
 - [正则化Regularizaiton.md](math/正则化Regularizaiton.md)
-## 12 network
+## 12 memory
+- [glibc227-malloc-chunk.md](memory/glibc227-malloc-chunk.md)
+## 13 network
 - [Nginx.md](network/Nginx.md)
 - [README.md](network/README.md)
 - [应用层协议概述.md](network/应用层协议概述.md)
 - [惊群.md](network/惊群.md)
-## 13 ObjectDetection
+## 14 ObjectDetection
 - [intro.md](ObjectDetection/intro.md)
-## 14 TensorFlow
+## 15 TensorFlow
 - [build_tfrecord.md](TensorFlow/build_tfrecord.md)
 - [DatasetFromManyImages.md](TensorFlow/DatasetFromManyImages.md)
 - [save_and_restore.md](TensorFlow/save_and_restore.md)
@@ -90,7 +92,7 @@
 - [todo.md](TensorFlow/todo.md)
 - [train.MonitoredSession.md](TensorFlow/train.MonitoredSession.md)
 - [从零开始的Estimator(一).md](TensorFlow/从零开始的Estimator(一).md)
-## 15 tools
+## 16 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
 - [code_win2linux.md](tools/code_win2linux.md)
 - [Dockerfile_intro.md](tools/Dockerfile_intro.md)
@@ -105,7 +107,7 @@
 - [linux多终端.md](tools/linux多终端.md)
 - [Makefile.md](tools/Makefile.md)
 - [nppTricks.md](tools/nppTricks.md)
-### 15.1 python
+### 16.1 python
 - [README.md](tools/python/README.md)
-## 16 ubuntu
+## 17 ubuntu
 - [trouble_shot.md](ubuntu/trouble_shot.md)
