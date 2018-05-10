@@ -54,10 +54,9 @@
 ## 8 Java
 - [ArrayList.md](Java/ArrayList.md)
 - [BlockingQueue.md](Java/BlockingQueue.md)
-- [ConcurrentHashMap.md](Java/ConcurrentHashMap.md)
 - [HashMap.md](Java/HashMap.md)
 - [LinkedHashMap.md](Java/LinkedHashMap.md)
-- [springmvc.md](Java/springmvc.md)
+- [spring.md](Java/spring.md)
 ## 9 linux
 - [README.md](linux/README.md)
 ## 10 LinuxKernel
