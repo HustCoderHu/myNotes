@@ -3,3 +3,6 @@ runoob.com
 
 廖雪峰
 <https://www.liaoxuefeng.com/>
+
+Python格式字符串  
+<http://blog.xiayf.cn/2013/01/26/python-string-format>  

@@ -49,41 +49,45 @@
 - [RAEDME.md](deepLearning/RAEDME.md)
 - [数据增强之图像.md](deepLearning/数据增强之图像.md)
 - [起火预测.md](deepLearning/起火预测.md)
-## 7 Java
+## 7 distributed
+- [README.md](distributed/README.md)
+## 8 Java
 - [ArrayList.md](Java/ArrayList.md)
 - [BlockingQueue.md](Java/BlockingQueue.md)
+- [ConcurrentHashMap.md](Java/ConcurrentHashMap.md)
 - [HashMap.md](Java/HashMap.md)
+- [LinkedHashMap.md](Java/LinkedHashMap.md)
 - [springmvc.md](Java/springmvc.md)
-## 8 linux
+## 9 linux
 - [README.md](linux/README.md)
-## 9 LinuxKernel
+## 10 LinuxKernel
 - [do_fork.md](LinuxKernel/do_fork.md)
 - [README.md](LinuxKernel/README.md)
 - [slab.md](LinuxKernel/slab.md)
 - [内存管理.md](LinuxKernel/内存管理.md)
 - [分页.md](LinuxKernel/分页.md)
 - [进程调度.md](LinuxKernel/进程调度.md)
-## 10 MachineLearning
+## 11 MachineLearning
 - [OnlineLearning.md](MachineLearning/OnlineLearning.md)
 - [README.md](MachineLearning/README.md)
 - [reinforcementLearning.md](MachineLearning/reinforcementLearning.md)
-## 11 math
+## 12 math
 - [cuBLAS.md](math/cuBLAS.md)
 - [cuSparse.md](math/cuSparse.md)
 - [example2.c](math/example2.c)
 - [Matrix.md](math/Matrix.md)
 - [openblas.md](math/openblas.md)
 - [正则化Regularizaiton.md](math/正则化Regularizaiton.md)
-## 12 memory
+## 13 memory
 - [glibc227-malloc-chunk.md](memory/glibc227-malloc-chunk.md)
-## 13 network
+## 14 network
 - [Nginx.md](network/Nginx.md)
 - [README.md](network/README.md)
 - [应用层协议概述.md](network/应用层协议概述.md)
 - [惊群.md](network/惊群.md)
-## 14 ObjectDetection
+## 15 ObjectDetection
 - [intro.md](ObjectDetection/intro.md)
-## 15 TensorFlow
+## 16 TensorFlow
 - [build_tfrecord.md](TensorFlow/build_tfrecord.md)
 - [DatasetFromManyImages.md](TensorFlow/DatasetFromManyImages.md)
 - [save_and_restore.md](TensorFlow/save_and_restore.md)
@@ -92,7 +96,7 @@
 - [todo.md](TensorFlow/todo.md)
 - [train.MonitoredSession.md](TensorFlow/train.MonitoredSession.md)
 - [从零开始的Estimator(一).md](TensorFlow/从零开始的Estimator(一).md)
-## 16 tools
+## 17 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
 - [code_win2linux.md](tools/code_win2linux.md)
 - [Dockerfile_intro.md](tools/Dockerfile_intro.md)
@@ -107,7 +111,7 @@
 - [linux多终端.md](tools/linux多终端.md)
 - [Makefile.md](tools/Makefile.md)
 - [nppTricks.md](tools/nppTricks.md)
-### 16.1 python
+### 17.1 python
 - [README.md](tools/python/README.md)
-## 17 ubuntu
+## 18 ubuntu
 - [trouble_shot.md](ubuntu/trouble_shot.md)
