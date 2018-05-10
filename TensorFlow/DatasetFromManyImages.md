@@ -122,6 +122,7 @@ dset = dataset.map(_mapfunc)
 dset = dataset.cache() # 内存能装下就上
 # 我猜后面的prefetch可能都免了
 dset = dset.shuffle(n_example+1, reshuffle_each_iteration=False)
+# shuffle 慎用，_mapfunc将文件名映射到图像之后，shuffle需要的缓冲区会非常大，一不小心就爆内存。可以在 map 前打乱文件列表达到同样的 shuffle 效果
 dset = dset.repeat(n_epochs)
 dset = dset.batch(batch_sz)
 dset = dset.prefetch(n) # n个batch了 注意
