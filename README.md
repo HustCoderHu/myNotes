@@ -47,6 +47,7 @@
 - [稀疏.md](CNN/稀疏.md)
 ## 6 database
 - [mysql-install.md](database/mysql-install.md)
+- [sql-client.md](database/sql-client.md)
 ## 7 deepLearning
 - [RAEDME.md](deepLearning/RAEDME.md)
 - [数据增强之图像.md](deepLearning/数据增强之图像.md)
@@ -89,16 +90,21 @@
 - [惊群.md](network/惊群.md)
 ## 16 ObjectDetection
 - [intro.md](ObjectDetection/intro.md)
-## 17 TensorFlow
+## 17 python
+- [json.md](python/json.md)
+- [README.md](python/README.md)
+- [并发.md](python/并发.md)
+## 18 TensorFlow
 - [build_tfrecord.md](TensorFlow/build_tfrecord.md)
 - [DatasetFromManyImages.md](TensorFlow/DatasetFromManyImages.md)
+- [finetune.md](TensorFlow/finetune.md)
 - [save_and_restore.md](TensorFlow/save_and_restore.md)
 - [tf_by_docker.md](TensorFlow/tf_by_docker.md)
 - [tf_obj_detection.md](TensorFlow/tf_obj_detection.md)
 - [todo.md](TensorFlow/todo.md)
 - [train.MonitoredSession.md](TensorFlow/train.MonitoredSession.md)
 - [从零开始的Estimator(一).md](TensorFlow/从零开始的Estimator(一).md)
-## 18 tools
+## 19 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
 - [code_win2linux.md](tools/code_win2linux.md)
 - [Dockerfile_intro.md](tools/Dockerfile_intro.md)
@@ -114,7 +120,5 @@
 - [linux多终端.md](tools/linux多终端.md)
 - [Makefile.md](tools/Makefile.md)
 - [nppTricks.md](tools/nppTricks.md)
-### 18.1 python
-- [README.md](tools/python/README.md)
-## 19 ubuntu
+## 20 ubuntu
 - [trouble_shot.md](ubuntu/trouble_shot.md)
