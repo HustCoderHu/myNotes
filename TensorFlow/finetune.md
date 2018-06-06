@@ -13,3 +13,5 @@ tensorflow slim(TF-Slim) 高级api介绍
 <https://blog.csdn.net/qq_25737169/article/details/79616671>  
 Inside TF-Slim(1) 综述  
 <https://zhuanlan.zhihu.com/p/33829820>  
+tensorflow中batch normalization的用法  
+<https://www.cnblogs.com/hrlnw/p/7227447.html>  
