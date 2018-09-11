@@ -13,6 +13,7 @@
 - [index_reference.md](index_reference.md)
 - [interview.md](interview.md)
 - [README.md](README.md)
+- [软件工程.md](软件工程.md)
 ## 1 algorithm
 - [README.md](algorithm/README.md)
 ## 2 baseLibs
@@ -53,7 +54,9 @@
 - [数据增强之图像.md](deepLearning/数据增强之图像.md)
 - [起火预测.md](deepLearning/起火预测.md)
 ## 8 distributed
+- [hequan.md](distributed/hequan.md)
 - [README.md](distributed/README.md)
+- [storage.md](distributed/storage.md)
 ## 9 Java
 - [ArrayList.md](Java/ArrayList.md)
 - [BlockingQueue.md](Java/BlockingQueue.md)
@@ -67,6 +70,7 @@
 - [do_fork.md](LinuxKernel/do_fork.md)
 - [README.md](LinuxKernel/README.md)
 - [slab.md](LinuxKernel/slab.md)
+- [workqueue.md](LinuxKernel/workqueue.md)
 - [内存管理.md](LinuxKernel/内存管理.md)
 - [分页.md](LinuxKernel/分页.md)
 - [进程调度.md](LinuxKernel/进程调度.md)
@@ -97,6 +101,7 @@
 ## 18 TensorFlow
 - [build_tfrecord.md](TensorFlow/build_tfrecord.md)
 - [DatasetFromManyImages.md](TensorFlow/DatasetFromManyImages.md)
+- [distributed.md](TensorFlow/distributed.md)
 - [finetune.md](TensorFlow/finetune.md)
 - [save_and_restore.md](TensorFlow/save_and_restore.md)
 - [tf_by_docker.md](TensorFlow/tf_by_docker.md)
