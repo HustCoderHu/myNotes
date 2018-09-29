@@ -49,6 +49,7 @@
 ## 6 database
 - [mysql-install.md](database/mysql-install.md)
 - [sql-client.md](database/sql-client.md)
+- [数据库基础.md](database/数据库基础.md)
 ## 7 deepLearning
 - [RAEDME.md](deepLearning/RAEDME.md)
 - [数据增强之图像.md](deepLearning/数据增强之图像.md)
@@ -70,6 +71,7 @@
 - [do_fork.md](LinuxKernel/do_fork.md)
 - [README.md](LinuxKernel/README.md)
 - [slab.md](LinuxKernel/slab.md)
+- [stack.md](LinuxKernel/stack.md)
 - [workqueue.md](LinuxKernel/workqueue.md)
 - [内存管理.md](LinuxKernel/内存管理.md)
 - [分页.md](LinuxKernel/分页.md)
@@ -88,6 +90,7 @@
 ## 14 memory
 - [glibc227-malloc-chunk.md](memory/glibc227-malloc-chunk.md)
 ## 15 network
+- [epoll.md](network/epoll.md)
 - [Nginx.md](network/Nginx.md)
 - [README.md](network/README.md)
 - [应用层协议概述.md](network/应用层协议概述.md)
