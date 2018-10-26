@@ -48,6 +48,7 @@
 - [稀疏.md](CNN/稀疏.md)
 ## 6 database
 - [mysql-install.md](database/mysql-install.md)
+- [RocksDB.md](database/RocksDB.md)
 - [sql-client.md](database/sql-client.md)
 - [数据库基础.md](database/数据库基础.md)
 ## 7 deepLearning
