@@ -133,3 +133,5 @@
 - [nppTricks.md](tools/nppTricks.md)
 ## 21 ubuntu
 - [trouble_shot.md](ubuntu/trouble_shot.md)
+## 22 vpn
+- [openvpn.md](vpn/openvpn.md)

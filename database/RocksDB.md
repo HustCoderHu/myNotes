@@ -9,6 +9,14 @@
 # LRUCache
 
 
+# flush
+从 memtable -> L0
+内存到持久介质
+
+flush 的流程中必定有打开 sstfile 并往其中写入 chunk 的操作
+
+https://github.com/facebook/rocksdb/wiki/Creating-and-Ingesting-SST-files
+
 # reference
 RocksDB. LRUCache源码分析  
 <https://www.jianshu.com/p/75b93a664ebe>  
