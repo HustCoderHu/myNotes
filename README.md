@@ -134,4 +134,5 @@
 ## 21 ubuntu
 - [trouble_shot.md](ubuntu/trouble_shot.md)
 ## 22 vpn
-- [openvpn.md](vpn/openvpn.md)
+- [openvpn-install.md](vpn/openvpn-install.md)
+- [openvpn_udp2raw.md](vpn/openvpn_udp2raw.md)
