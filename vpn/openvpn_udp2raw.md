@@ -7,6 +7,10 @@
 
 client <--> openvpn <--> udp2raw <--> === === === <--> udp2raw <--> openvpn <--> server
 
+# 安装
+<https://github.com/wangyu-/udp2raw-tunnel/releases>  
+
+
 # 启动
 server
 ```
