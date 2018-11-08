@@ -36,6 +36,15 @@ build-dh
 ## server
 ```
 apt install openvpn
+
+curl -O curl -O https://swupdate.openvpn.org/community/releases/openvpn-2.4.6.tar.xz
+tar Jxf openvpn-2.4.6.tar.xz
+cd openvpn-2.4.6
+./configure --prefix=$(pwd)/install
+```
+
+```
+apt install libssl-dev
 ```
 
 服务器端需要下面的文件
@@ -48,8 +57,15 @@ dh dh2048.pem
 转发以及 nat
 ```
 echo 1 > /proc/sys/net/ipv4/ip_forward
+service iptables restart
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -F
 iptables -t nat -A POSTROUTING -o ${IFNAME} -j MASQUERADE
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 ```
+
 
 参考安装客户端时 sample-config 目录下的 server.ovpn 文件设置服务器启动参数
 
