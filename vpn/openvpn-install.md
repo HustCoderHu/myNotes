@@ -44,14 +44,21 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 iptables -P INPUT ACCEPT
 iptables -P FORWARD ACCEPT
 iptables -P OUTPUT ACCEPT
+
 清空其他规则
 iptables -F
+
 # 源地址 nat
 iptables -t nat -A POSTROUTING -o ${IFNAME} -j MASQUERADE
+# 有些机器的公网 ip 在子网卡上，会导致 -o 获取源地址失败，SNAT也就不成功，这时需要自己指定源地址
+
+iptables -t nat -A POSTROUTING -o ${Iface} -j SNAT --to-source ${机器公网IP}
+# -o 表示转发的包会从哪个网卡出去，通过 route 看 default 那条的 Iface
 
 # 开机自动加载 /etc/iptables/ 下的规则
 apt isntall iptables-persistent
 # 规则文件由 iptables-save 生成
+iptables-save > /etc/iptables/rules.v4
 ```
 
 ### ovpn
