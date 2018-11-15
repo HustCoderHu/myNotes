@@ -31,6 +31,11 @@ udp2raw_mp_nolibnet -c -l0.0.0.0:3333  -r${SERVER_IP}:4096 -k "passwd" --raw-mod
 openvpn 发往 127.0.0.1 3333
 ```
 
+# 注意
+openvpn 有一个 interactive service 这个服务要开启，否则openvpn无法接收服务端的路由推送  
+官方说明如下  
+<https://community.openvpn.net/openvpn/wiki/OpenVPNInteractiveService>
+
 # reference
 路由跟踪 best trace
 快速入门  
