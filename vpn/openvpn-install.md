@@ -107,24 +107,7 @@ cipher none
 ```
 
 # 部分代理
-获取 ip 段  
-<https://github.com/fivesheep/chnroutes>  
-
-```
-python chnroutes.py
-```
-行数 8000+ 系统负担可能很大
-
-ip 段
-<https://www.ip2location.com/blockvisitorsbycountry.aspx>
-
-<https://www.cnblogs.com/wpjamer/p/8820174.html>  
-
-路由导入  
-<https://github.com/davideuler/chnroutes/issues/60>  
-
-生成中国ip 段
-<https://github.com/liudongmiao/chinaip/blob/master/Makefile>  
+<https://github.com/HustCoderHu/WinRoute>
 
 # multi client
 
