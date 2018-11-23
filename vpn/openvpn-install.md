@@ -91,7 +91,7 @@ dh dh2048.pem
 参考安装客户端时 sample-config 目录下的 server.ovpn 文件设置服务器启动参数
 
 ```
-openvpn --config xxx.ovpn
+openvpn --config xxx.ovpn [ > log_ovpn 2 > &1 &] # [] 可以到后台
 ```
 
 客户端如果要用  openvpn-gui ，配置文件里的 crt key 文件要用绝对路径
@@ -113,6 +113,38 @@ cipher none
 
 # 测试延迟
 tcping 
+
+# 用户名 密码
+两种方式
+
+##  非 PAM
+bash脚本验证密码
+server 配置文件增加
+```
+username-as-common-name
+verify-client-cert none
+auth-user-pass-verify /path/to/checkpsw.sh via-env
+```
+checkpsw.sh 文件里要配置 密码文件 和 日志文件 的路径
+
+## auth-pam.pl
+`/usr/share/openvpn/auth-pam.pl`  
+```
+auth-user-pass-verify /usr/share/openvpn/auth-pam.pl via-file
+```
+貌似是通过系统帐户认证，没有成功
+<https://xu3352.github.io/linux/2017/06/08/openvpn-use-username-and-password-authentication>  
+<http://blog.51cto.com/jerry12356/1854949>  
+<https://www.jianshu.com/p/4c631afedb6c>  
+
+<http://blog.51niux.com/?id=73>  
+
+<http://www.beijinghuayu.com.cn/openvpn%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E7%AE%A1%E7%90%86/>  
+
+<https://forums.openvpn.net/viewtopic.php?t=12965>  
+
+目录 `/etc/pam.d` 目录下 用 login
+
 
 # reference
 编译 OpenVPN 及解决相关依赖问题  
