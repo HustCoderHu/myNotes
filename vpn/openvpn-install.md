@@ -56,7 +56,7 @@ iptables -t nat -A POSTROUTING -o ${Iface} -j SNAT --to-source ${机器公网IP}
 # -o 表示转发的包会从哪个网卡出去，通过 route 看 default 那条的 Iface
 
 # 开机自动加载 /etc/iptables/ 下的规则
-apt isntall iptables-persistent
+apt install iptables-persistent
 # 规则文件由 iptables-save 生成
 iptables-save > /etc/iptables/rules.v4
 ```
