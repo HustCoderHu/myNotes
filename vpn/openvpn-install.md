@@ -124,6 +124,7 @@ server 配置文件增加
 username-as-common-name
 verify-client-cert none
 auth-user-pass-verify /path/to/checkpsw.sh via-env
+script-security 3
 ```
 checkpsw.sh 文件里要配置 密码文件 和 日志文件 的路径
 
