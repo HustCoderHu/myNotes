@@ -134,6 +134,9 @@
 ## 21 ubuntu
 - [trouble_shot.md](ubuntu/trouble_shot.md)
 ## 22 vpn
+- [checkpsw.sh](vpn/checkpsw.sh)
 - [openvpn-install.md](vpn/openvpn-install.md)
 - [openvpn_udp2raw.md](vpn/openvpn_udp2raw.md)
+- [smtp.py](vpn/smtp.py)
+- [ss-manager.md](vpn/ss-manager.md)
 - [winroute.md](vpn/winroute.md)
