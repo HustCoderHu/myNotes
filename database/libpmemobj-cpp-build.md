@@ -14,13 +14,13 @@ Call Stack (most recent call first):
 ```
 
 ## 解决
-`pkg_check_modules ` 没有找到 LIBPMEMOBJ
+`pkg_check_modules ` 没有找到 LIBPMEMOBJ  
 在 `CMakeList.txt` 出错前增加以下内容
 ``` CMakeList
 set(ENV{PKG_CONFIG_PATH} $ENV{PKG_CONFIG_PATH} /lib64/pkgconfig)
 ```
 
-这个添加的路径可以通过 locate libpmemboj 找到
+这个添加的路径可以通过 locate libpmemboj 找到  
 使用 LIBPMEMOBJ++ 的时候也是类似的方法
 
 # make 错误
