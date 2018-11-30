@@ -47,6 +47,7 @@
 - [加速.md](CNN/加速.md)
 - [稀疏.md](CNN/稀疏.md)
 ## 6 database
+- [libpmemobj-cpp-build.md](database/libpmemobj-cpp-build.md)
 - [mysql-install.md](database/mysql-install.md)
 - [RocksDB.md](database/RocksDB.md)
 - [sql-client.md](database/sql-client.md)
@@ -117,6 +118,7 @@
 - [从零开始的Estimator(一).md](TensorFlow/从零开始的Estimator(一).md)
 ## 20 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
+- [CMake.md](tools/CMake.md)
 - [code_win2linux.md](tools/code_win2linux.md)
 - [Dockerfile_intro.md](tools/Dockerfile_intro.md)
 - [dockerIntro.md](tools/dockerIntro.md)
