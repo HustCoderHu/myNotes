@@ -43,6 +43,18 @@ git push REPO_NAME BRANCH_NAME_A : BRANCH_NAME_B
 git branch -d BRANCH_NAME # 删除本地分支，要先切到其他分支才能删除
 ```
 
+## 切换远程分支
+本地切换到远程分支，其实隐含了创建本地分支的过程
+```
+git branch remotes/origin/2.0.0
+git checkout -b 2.0.0
+# -b 的意思是 base，以当前分支为 base，新建一个名叫 2.0.0 的分支
+```
+合并命令
+```
+git branch -b LOCAL_BRANCH REPO/BRANCH
+```
+
 # 冲突
 多人开发过程中，他人提交代码到 master 上，自己本地分支修改了相关的代码，pull 的过程中就会发生冲突
 
@@ -98,3 +110,5 @@ Beyond Compare作为git的比对与合并工具
 <https://blog.csdn.net/zhangbinsijifeng/article/details/48029683>  
 Git - Your branch and 'origin/xxx' have diverged  
 <https://blog.csdn.net/d6619309/article/details/52711035>  
+git切换到远程分支  
+<https://www.w3ctech.com/topic/58>  
