@@ -44,6 +44,13 @@ git branch -d BRANCH_NAME # 删除本地分支，要先切到其他分支才能�
 ```
 
 ## 切换远程分支
+
+```
+# 先拉取上游分支
+git fetch upstream ${BRANCH_NAME}
+git checkout -b ${BRANCH_NAME} remotes/upstream/${BRANCH_NAME}
+```
+
 本地切换到远程分支，其实隐含了创建本地分支的过程
 ```
 git branch remotes/origin/2.0.0
@@ -52,7 +59,7 @@ git checkout -b 2.0.0
 ```
 合并命令
 ```
-git branch -b LOCAL_BRANCH REPO/BRANCH
+git checkout -b LOCAL_BRANCH REPO/BRANCH
 ```
 
 # 冲突
