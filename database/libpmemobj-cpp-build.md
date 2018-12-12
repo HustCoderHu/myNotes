@@ -20,7 +20,7 @@ Call Stack (most recent call first):
 set(ENV{PKG_CONFIG_PATH} $ENV{PKG_CONFIG_PATH} /lib64/pkgconfig)
 ```
 
-这个添加的路径可以通过 locate libpmemboj 找到  
+这个添加的路径可以通过 locate libpmemobj 找到  
 使用 LIBPMEMOBJ++ 的时候也是类似的方法
 
 # make 错误
