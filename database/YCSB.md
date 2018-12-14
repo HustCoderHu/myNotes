@@ -59,10 +59,20 @@ make rocksdbjavastaticrelease # 还需要虚拟机 VirtualBox 之类的
 ## cmake
 
 ```
+mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DWITH_SNAPPY=1 -DWITH_JNI=1 -DUSE_RTTI=1 ..
 # Release 会增加 -O3
 # WITH_JNI 看 CMakeList 可以找到答案
 # USE_RTTI 不加就会导致 libpmemobj++ 编译错误 (typeid找不到)
+
+make rocksdbjni-shared
+make rocksdbjni_classes
+make rocksdbjni_headers
+mv librocksdbjni-shared.so librocksdbjni-linux64.so
+mkdir unzip_classes
+cd unzip_classes
+jar -xf ../rocksdbjni_classes.jar
+jar -cf rocksdbjni-5.18.0.jar ../../librocksdb.so ../librocksdbjni-linux64.so org/rocksdb/*
 ```
 
 ```
