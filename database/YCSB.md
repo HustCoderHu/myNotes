@@ -108,6 +108,8 @@ add_jar(rocksdbjni_headers
 make rocksdbjava -jN
 ```
 
+
+
 # YCSB
 <https://github.com/brianfrankcooper/YCSB/releases> 页面可以找到 rocksdb 的包，解压之后里面的 README 也有部分说明
 
@@ -123,6 +125,13 @@ make rocksdbjava -jN
 main 函数在 `core/src/main/java/com/yahoo/ycsb/Client.java`
 
 rocksdb 的适配层在 `rocksdb/src/main/java/com/yahoo/ycsb/db/rocksdb/RocksDBClient.java`
+
+## run
+```
+export ROCKSDB_SHAREDLIB_DIR=/home/ycsb-rocksdb-binding-0.15.0/lib # 即使加了这行
+# 运行
+Exception in thread "Thread-2" java.lang.UnsatisfiedLinkError: /home/ycsb-rocksdb-binding-0.15.0/lib/librocksdbjni-linux64.so: librocksdb.so.5: cannot open shared object file: No such file or directory
+```
 
 # reference
 YCSB初步介绍  
