@@ -32,10 +32,41 @@ memtable.cc | ApproximateMemoryUsage, Add
 
 skiplist.h 中 `NewNode()` 中使用了
 ```
-nvm_arena->AllocateAlignedNVM() 
+nvm_arena->AllocateAlignedNVM()
+{
+    if 空间足够
+      指针后移
+    else 不够
+      AllocateFallbackNVM()
+       -> AllocateNVMBlock()
+}
+ 
+
 ```
 如果定义了 ENABLE_RECOVERY 则会从文件恢复  
 否则
+
+# port to rocksdb
+尝试替换掉 MemTable 的 ConcurrentArena 成员  
+
+此成员被定为 private，所以只在头文件和 memtable.cc 中使用
+
+使用位置确定
+
+- MemTable 初始化列表，自身初始化
+- MemTable 初始化列表，unique_ptr<MemTableRep> table_ 成员入参
+- MemTable 初始化列表，unique_ptr<MemTableRep> range_del_table_ 成员入参
+- MemTable 构造函数，DynamicBloom 构造入参
+- ApproximateMemoryUsage()
+- ShouldFlushNow()
+
+极限写入速度 s
+
+buf 大小 N， 阈值 x
+L0 L1 
+
+时间平衡
+T(compact) <= T(剩余空间被写满)
 
 # reference
 深入Linux的内存管理，关于PTMalloc3、Hoard和TCMalloc  
