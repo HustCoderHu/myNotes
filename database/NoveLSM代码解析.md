@@ -40,8 +40,6 @@ nvm_arena->AllocateAlignedNVM()
       AllocateFallbackNVM()
        -> AllocateNVMBlock()
 }
- 
-
 ```
 如果定义了 ENABLE_RECOVERY 则会从文件恢复  
 否则
@@ -54,11 +52,29 @@ nvm_arena->AllocateAlignedNVM()
 使用位置确定
 
 - MemTable 初始化列表，自身初始化
-- MemTable 初始化列表，unique_ptr<MemTableRep> table_ 成员入参
+- MemTable 初始化列表，unique_ptr<MemTableRep> table_ 成员初始化参数
 - MemTable 初始化列表，unique_ptr<MemTableRep> range_del_table_ 成员入参
 - MemTable 构造函数，DynamicBloom 构造入参
 - ApproximateMemoryUsage()
 - ShouldFlushNow()
+
+## table_ 成员初始化参数
+文件 memtablerep.h  
+工厂模式 create 方法的入参
+
+以下3个工厂
+- SkipListFactory
+- HashSkipListRep
+- VectorRepFactory
+```
+MemTableRep* CreateMemTableRep(const MemTableRep::KeyComparator&,
+                                         Allocator*, const SliceTransform*,
+                                         Logger* logger)
+```
+
+### SkipListFactory
+文件 skiplistrep.cc
+
 
 极限写入速度 s
 
@@ -68,6 +84,21 @@ L0 L1
 时间平衡
 T(compact) <= T(剩余空间被写满)
 
+```
+while(1) {
+    spin_lock()
+    if (cbuf != nullptr) {
+        spin_unlock();
+        mutex_down();
+    } else
+        break;
+}
+写数据
+切buf
+spin_unlock()
+```
+
 # reference
 深入Linux的内存管理，关于PTMalloc3、Hoard和TCMalloc  
 <http://www.itboth.com/d/jaY73a/linux>  
+
