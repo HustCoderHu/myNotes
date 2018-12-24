@@ -68,11 +68,18 @@ cmake -DCMAKE_BUILD_TYPE=Release -DWITH_SNAPPY=1 -DWITH_JNI=1 -DUSE_RTTI=1 ..
 make rocksdbjni-shared
 make rocksdbjni_classes
 make rocksdbjni_headers
-mv librocksdbjni-shared.so librocksdbjni-linux64.so
+
 mkdir unzip_classes
 cd unzip_classes
-jar -xf ../rocksdbjni_classes.jar
-jar -cf rocksdbjni-5.18.0.jar ../../librocksdb.so ../librocksdbjni-linux64.so org/rocksdb/*
+cp ../java/librocksdbjni-shared.so librocksdbjni-linux64.so
+jar -xf ../java/rocksdbjni_classes.jar
+jar -cf rocksdbjni-5.18.0.jar ../librocksdb.so librocksdbjni-linux64.so org/rocksdb/*
+```
+
+将 `rocksdbjni-5.18.0.jar` 放到 `ycsb/lib` 目录下
+```
+./bin/ycsb load rocksdb -s -P workloads/workloada -p rocksdb.dir=/tmp/ycsb-rocksdb-data
+./bin/ycsb run rocksdb -s -P workloads/workloada -p rocksdb.dir=/tmp/ycsb-rocksdb-data
 ```
 
 ```
@@ -107,8 +114,6 @@ add_jar(rocksdbjni_headers
 ```
 make rocksdbjava -jN
 ```
-
-
 
 # YCSB
 <https://github.com/brianfrankcooper/YCSB/releases> 页面可以找到 rocksdb 的包，解压之后里面的 README 也有部分说明
