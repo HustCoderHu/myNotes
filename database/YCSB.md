@@ -3,7 +3,7 @@ Cloud Serving Benchmark
 ---
 
 
-# RocksJava
+# 1 RocksJava
 
 三层
 - java 类 ，用户使用
@@ -14,7 +14,13 @@ Cloud Serving Benchmark
 
 也就是说需要编译 rocksdb 生成这个 jar
 
-## make directly
+## 1.1 make directly
+
+### make rocksdbjava -jn
+配置 `DEBUG_LEVEL` 变量为 0，即为 release，最终会在 `java/target` 目录下生成一些文件，so文件大小还是过大，有 100MB，怀疑还是有符号信息，  
+或者是链接了多余的函数和类。  
+生成的 jni.jar 可以正常通过 ycsb 的 load 和 run
+不过 Makefile 添加依赖比较麻烦，最终考虑还是用 cmake
 
 ### make rocksdbjavastatic
 
@@ -56,8 +62,10 @@ yum install vagrant_2.2.2_x86_64.rpm
 
 make rocksdbjavastaticrelease # 还需要虚拟机 VirtualBox 之类的
 ```
-## cmake
+暂时放弃
 
+## 1.2 cmake
+CmakeLists.txt 47 到 52 行那些选项的 OFF 可能是导致最终生成的 so 比较小的原因
 ```
 mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DWITH_SNAPPY=1 -DWITH_JNI=1 -DUSE_RTTI=1 ..
@@ -65,7 +73,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DWITH_SNAPPY=1 -DWITH_JNI=1 -DUSE_RTTI=1 ..
 # WITH_JNI 看 CMakeList 可以找到答案
 # USE_RTTI 不加就会导致 libpmemobj++ 编译错误 (typeid找不到)
 
-make rocksdbjni-shared
+make rocksdbjni-shared -j12
 make rocksdbjni_classes
 make rocksdbjni_headers
 
@@ -80,7 +88,45 @@ jar -cf rocksdbjni-5.18.0.jar ../librocksdb.so librocksdbjni-linux64.so org/rock
 ```
 ./bin/ycsb load rocksdb -s -P workloads/workloada -p rocksdb.dir=/tmp/ycsb-rocksdb-data
 ./bin/ycsb run rocksdb -s -P workloads/workloada -p rocksdb.dir=/tmp/ycsb-rocksdb-data
+
+[OVERALL], RunTime(ms), 335
+[OVERALL], Throughput(ops/sec), 2985.0746268656717
+[TOTAL_GCS_PS_Scavenge], Count, 0
+[TOTAL_GC_TIME_PS_Scavenge], Time(ms), 0
+[TOTAL_GC_TIME_%_PS_Scavenge], Time(%), 0.0
+[TOTAL_GCS_PS_MarkSweep], Count, 0
+[TOTAL_GC_TIME_PS_MarkSweep], Time(ms), 0
+[TOTAL_GC_TIME_%_PS_MarkSweep], Time(%), 0.0
+[TOTAL_GCs], Count, 0
+[TOTAL_GC_TIME], Time(ms), 0
+[TOTAL_GC_TIME_%], Time(%), 0.0
+[READ], Operations, 509
+[READ], AverageLatency(us), 35.7426326129666
+[READ], MinLatency(us), 11
+[READ], MaxLatency(us), 436
+[READ], 95thPercentileLatency(us), 79
+[READ], 99thPercentileLatency(us), 142
+[READ], Return=OK, 509
+[CLEANUP], Operations, 1
+[CLEANUP], AverageLatency(us), 5778.0
+[CLEANUP], MinLatency(us), 5776
+[CLEANUP], MaxLatency(us), 5779
+[CLEANUP], 95thPercentileLatency(us), 5779
+[CLEANUP], 99thPercentileLatency(us), 5779
+[UPDATE], Operations, 491
+[UPDATE], AverageLatency(us), 112.44806517311609
+[UPDATE], MinLatency(us), 47
+[UPDATE], MaxLatency(us), 2179
+[UPDATE], 95thPercentileLatency(us), 230
+[UPDATE], 99thPercentileLatency(us), 495
+[UPDATE], Return=OK, 491
+*** Error in `/home/kv-pmem/rocksdb/YCSB/jdk1.8.0_181/bin/java': double free or corruption (out): 0x00007f36540ade90 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x81499)[0x7f37109ca499]
+/tmp/librocksdbjni4432488629981473834.so(_ZNSt13unordered_mapISsN7rocksdb14OptionTypeInfoESt4hashISsESt8equal_toISsESaISt4pairIKSsS1_EEED1Ev+0x86)[0x7f36be511306]
 ```
+
+全局搜索 `OptionTypeInfo`
 
 ```
 CMake Deprecation Warning at /usr/local/share/cmake-3.13/Modules/UseJava.cmake:1318 (message):
@@ -113,6 +159,68 @@ add_jar(rocksdbjni_headers
 
 ```
 make rocksdbjava -jN
+```
+
+### 1.2.1 排错
+cmake buildtype=debug 方式构建jar, 开启 core dump `ulimit -c unlimited`  
+run 出错
+```
+/tmp/librocksdbjni6222571687757090684.so(_ZN9__gnu_cxx13new_allocatorIPNSt8__detail15_Hash_node_baseEE10deallocateEPS3_m+0x20)[0x7f0f03766778]
+/tmp/librocksdbjni6222571687757090684.so(_ZNSt10_HashtableISsSt4pairIKSsN7rocksdb14OptionTypeInfoEESaIS4_ENSt8__detail10_Select1stESt8equal_toISsESt4hashISsENS6_18_Mod_range_hashingENS6_20_Default_ranged_hashENS6_20_Prime_rehash_policyENS6_17_Hashtable_traitsILb1ELb0ELb1EEEE21_M_deallocate_bucketsEPPNS6_15_Hash_node_baseEm+0x4a)[0x7f0f037ee1c4]
+/tmp/librocksdbjni6222571687757090684.so(_ZNSt10_HashtableISsSt4pairIKSsN7rocksdb14OptionTypeInfoEESaIS4_ENSt8__detail10_Select1stESt8equal_toISsESt4hashISsENS6_18_Mod_range_hashingENS6_20_Default_ranged_hashENS6_20_Prime_rehash_policyENS6_17_Hashtable_traitsILb1ELb0ELb1EEEED1Ev+0x36)[0x7f0f037e6b9e]
+/tmp/librocksdbjni6222571687757090684.so(_ZNSt13unordered_mapISsN7rocksdb14OptionTypeInfoESt4hashISsESt8equal_toISsESaISt4pairIKSsS1_EEED1Ev+0x18)[0x7f0f037e22fc]
+```
+
+
+
+总是提示 `Error attaching to core file: cannot open binary file` 参考以下链接怀疑是 java 和 jstack 版本不匹配  
+<https://blog.csdn.net/liyf155/article/details/65628209>  
+
+`which java` `which jstack` 发现两者位置不在一个地方
+
+通过以下办法避免版本不同
+```
+gdb java core.pid
+$JAVA_HOME/bin/jstack $JAVA_HOME/bin/java core.30110
+```
+得到输出
+```
+Attaching to core core.30110 from executable /home/kv-pmem/rocksdb/YCSB/jdk1.8.0_181/bin/java, please wait...
+Debugger attached successfully.
+Server compiler detected.
+JVM version is 25.181-b13
+Deadlock Detection:
+
+No deadlocks found.
+
+Thread 30128: (state = BLOCKED)
+ - java.lang.System.arraycopy(java.lang.Object, int, java.lang.Object, int, int) @bci=0 (Compiled frame; information may be imprecise)
+ - java.lang.ThreadGroup.remove(java.lang.Thread) @bci=59, line=969 (Interpreted frame)
+ - java.lang.ThreadGroup.threadTerminated(java.lang.Thread) @bci=6, line=942 (Interpreted frame)
+ - java.lang.Thread.exit() @bci=12, line=758 (Interpreted frame)
+
+
+Thread 30127: (state = BLOCKED)
+ - java.lang.Object.wait(long) @bci=0 (Interpreted frame)
+ - java.lang.ref.ReferenceQueue.remove(long) @bci=59, line=144 (Interpreted frame)
+ - java.lang.ref.ReferenceQueue.remove() @bci=2, line=165 (Interpreted frame)
+ - java.lang.ref.Finalizer$FinalizerThread.run() @bci=36, line=216 (Interpreted frame)
+
+
+Thread 30126: (state = BLOCKED)
+ - java.lang.Object.wait(long) @bci=0 (Interpreted frame)
+ - java.lang.Object.wait() @bci=2, line=502 (Interpreted frame)
+ - java.lang.ref.Reference.tryHandlePending(boolean) @bci=54, line=191 (Interpreted frame)
+ - java.lang.ref.Reference$ReferenceHandler.run() @bci=1, line=153 (Interpreted frame)
+
+
+Thread 30111: (state = BLOCKED)
+ - java.lang.Shutdown.halt0(int) @bci=0 (Interpreted frame)
+ - java.lang.Shutdown.halt(int) @bci=7, line=139 (Interpreted frame)
+ - java.lang.Shutdown.exit(int) @bci=99, line=213 (Interpreted frame)
+ - java.lang.Runtime.exit(int) @bci=14, line=109 (Interpreted frame)
+ - java.lang.System.exit(int) @bci=4, line=971 (Interpreted frame)
+ - com.yahoo.ycsb.Client.main(java.lang.String[]) @bci=920, line=848 (Interpreted frame)
 ```
 
 # YCSB
