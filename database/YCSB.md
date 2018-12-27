@@ -223,6 +223,82 @@ Thread 30111: (state = BLOCKED)
  - com.yahoo.ycsb.Client.main(java.lang.String[]) @bci=920, line=848 (Interpreted frame)
 ```
 
+# 2 novelsm-jni
+安装 pmdk 之后
+
+编辑 `include/leveldb/slice.h`，注释成员变量前面的 `private`
+
+编辑 `build_detect_platform`
+``` shell
+# 61 行附近
+PLATFORM_LIBS="-lnuma -lpmem"
+
+# 64 行附近
+# PLATFORM_SHARED_CFLAGS=
+
+# 193 行附近，去掉下面的注释
+COMMON_FLAGS="$COMMON_FLAGS -D_ENABLE_PMEMIO"
+```
+
+```
+cd hoard
+./compile_install_hoard.sh
+cd ..
+make -j8
+```
+out-* 目录下有各种库
+
+## leveldbjni
+```
+mvn clean install -e -X -P linux64
+```
+
+### 镜像导致错误
+```
+[ERROR] [ERROR] Some problems were encountered while processing the POMs:
+[ERROR] Unresolveable build extension: Plugin org.apache.maven.wagon:wagon-webdav-jackrabbit:1.0-beta-7 or one of its dependencies could not be resolved: The following artifacts could not be resolved: org.apache.maven.wagon:wagon-webdav-jackrabbit:jar:1.0-beta-7, org.apache.maven.wagon:wagon-http-shared:jar:1.0-beta-7, nekohtml:xercesMinimal:jar:1.9.6.2, nekohtml:nekohtml:jar:1.9.6.2, org.apache.jackrabbit:jackrabbit-webdav:jar:1.5.0, org.apache.jackrabbit:jackrabbit-jcr-commons:jar:1.5.0, org.slf4j:slf4j-api:jar:1.5.3, org.slf4j:slf4j-nop:jar:1.5.3, org.apache.maven.wagon:wagon-provider-api:jar:1.0-beta-7, org.codehaus.plexus:plexus-utils:jar:1.4.2: Could not transfer artifact org.apache.maven.wagon:wagon-webdav-jackrabbit:jar:1.0-beta-7 from/to alimaven (http://maven.aliyun.com/nexus/content/groups/public/): No route to host (Host unreachable) @
+
+# After correcting the problems, you can resume the build with the command
+mvn <goals> -rf :leveldbjni-linux64
+```
+*** 解决 ***  
+不要把 maven 镜像改到 ali
+
+
+### jdk 错误
+
+```
+[INFO] configure: JAVA_HOME was set, checking to see if it's a JDK we can use...
+[INFO] checking if '/home/kv-pmem/rocksdb/YCSB/jdk1.8.0_181' is a JDK... no
+[INFO] configure: javac was on your path, checking to see if it's part of a JDK we can use...
+[INFO] checking if '/home/kv-pmem/rocksdb/YCSB/jdk1.8.0_181' is a JDK... no
+[INFO] configure: Taking a guess as to where your OS installs the JDK by default...
+[INFO] checking if '/usr' is a JDK... no
+[INFO] configure: error: JDK not found. Please use the --with-jni-jdk option
+[INFO] rc: 1
+```
+
+``` shell
+leveldbjni-linux64/target/native-build/configure --help
+Optional Packages:
+  --with-jni-jdk=PATH     Location of the Java Development Kit. Defaults to
+                          your JAVA_HOME setting and falls back to where it is
+                          typically installed on your OS
+```
+
+于是修改 `leveldbjni-linux64/pom.xml` 文件，configureArgs 增加一行
+```
+<arg>--with-jni-jdk=${env.JAVA_HOME}</arg>
+```
+
+继续出错
+```
+[INFO] configure: error: JDK not found. Invalid --with-jni-jdk PATH
+```
+遂分析文件 `leveldbjni/src/main/native-package/m4/jni.m4` 其中函数 `CHECK_JNI_JDK`
+
+配置环境 LEVELDB_HOME 指向 lsm_nvm 目录
+
 # YCSB
 <https://github.com/brianfrankcooper/YCSB/releases> 页面可以找到 rocksdb 的包，解压之后里面的 README 也有部分说明
 
