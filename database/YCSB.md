@@ -65,6 +65,8 @@ make rocksdbjavastaticrelease # 还需要虚拟机 VirtualBox 之类的
 暂时放弃
 
 ## 1.2 cmake
+export JAVA_HOME=
+
 CmakeLists.txt 47 到 52 行那些选项的 OFF 可能是导致最终生成的 so 比较小的原因
 ```
 mkdir build && cd build
@@ -80,8 +82,9 @@ make rocksdbjni_headers
 mkdir unzip_classes
 cd unzip_classes
 cp ../java/librocksdbjni-shared.so librocksdbjni-linux64.so
-jar -xf ../java/rocksdbjni_classes.jar
-jar -cf rocksdbjni-5.18.0.jar ../librocksdb.so librocksdbjni-linux64.so org/rocksdb/*
+$JAVA_HOME/bin/jar -xf ../java/rocksdbjni_classes.jar
+$JAVA_HOME/bin/jar -cf rocksdbjni-5.18.0.jar *
+$JAVA_HOME/bin/jar -cf rocksdbjni-5.18.0.jar ../librocksdb.so librocksdbjni-linux64.so org/rocksdb/* 
 ```
 
 将 `rocksdbjni-5.18.0.jar` 放到 `ycsb/lib` 目录下
