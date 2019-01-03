@@ -49,8 +49,12 @@
 ## 6 database
 - [libpmemobj-cpp-build.md](database/libpmemobj-cpp-build.md)
 - [mysql-install.md](database/mysql-install.md)
+- [NoveLSM代码解析.md](database/NoveLSM代码解析.md)
+- [pmdk-install.md](database/pmdk-install.md)
 - [RocksDB.md](database/RocksDB.md)
 - [sql-client.md](database/sql-client.md)
+- [ycsb-novelsm.md](database/ycsb-novelsm.md)
+- [YCSB.md](database/YCSB.md)
 - [数据库基础.md](database/数据库基础.md)
 ## 7 deepLearning
 - [RAEDME.md](deepLearning/RAEDME.md)
@@ -122,6 +126,7 @@
 - [code_win2linux.md](tools/code_win2linux.md)
 - [Dockerfile_intro.md](tools/Dockerfile_intro.md)
 - [dockerIntro.md](tools/dockerIntro.md)
+- [gdb.md](tools/gdb.md)
 - [git-common-use.md](tools/git-common-use.md)
 - [git-diff.md](tools/git-diff.md)
 - [git-stash.md](tools/git-stash.md)
@@ -131,6 +136,7 @@
 - [jenkins.md](tools/jenkins.md)
 - [linuxCommands.md](tools/linuxCommands.md)
 - [linux多终端.md](tools/linux多终端.md)
+- [lvm.md](tools/lvm.md)
 - [Makefile.md](tools/Makefile.md)
 - [nppTricks.md](tools/nppTricks.md)
 ## 21 ubuntu
