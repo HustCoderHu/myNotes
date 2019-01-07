@@ -1,5 +1,4 @@
 
-## build
 # 2 novelsm-jni
 安装 pmdk 之后，使用下面的代码，commits 里可以看到修改内容
 <https://github.com/HustCoderHu/lsm_nvm>
@@ -19,7 +18,6 @@ mvn clean install -P linux64
 mvn clean install -e -X -P linux64
 ```
 
-### 打包
 三类 class 文件
 - iq80 leveldb api
 - hawtjni
@@ -35,29 +33,40 @@ rm -rf ~/.m2/repository/org/fusesource/leveldbjni/
 rm -rf leveldbjni/target
 rm -rf leveldbjni-linux64/target
 git clean -f
-mvn install -P linux64 -D skipTests
+# YCSB 把 $LEVELDB_HOME 当作链接库的搜索路径
+ln -s $LEVELDB_HOME/out-shared/libleveldb.so.1.18 $LEVELDB_HOME/libleveldb.so
+mvn install -P linux64 -D skipTests # 不要在 screen 里用
 
-export 
-
+# 打包
 mkdir pack-leveldbjni && cd pack-leveldbjni
 curl -O http://central.maven.org/maven2/org/fusesource/hawtjni/hawtjni-runtime/1.11/hawtjni-runtime-1.11.jar
 curl -O http://central.maven.org/maven2/org/iq80/leveldb/leveldb-api/0.6/leveldb-api-0.6.jar
 jar xf ../leveldbjni-linux64/target/leveldbjni-linux64-99-master-SNAPSHOT.jar # so
+mv META-INF/native/linux64/libleveldbjni.so .
+rm -rf META-INF
+
 jar xf ../leveldbjni/target/leveldbjni-99-master-SNAPSHOT.jar # jni.class
 jar xf hawtjni-runtime-1.11.jar
 jar xf leveldb-api-0.6.jar
-jar cf novelsmjni.jar libleveldb.so META-INF org
+jar cf novelsmjni.jar libleveldbjni.so META-INF org
 ```
 
+### YCSB
 ```
+cp novelsmjni.jar leveldbjni/
 mvn -pl com.yahoo.ycsb:leveldbjni-binding -am clean package
 ```
-会构建出一个 tar.gz 包，但是 `bin/bindings.properties` 里面就是没有 leveldbjni
+会构建出一个 tar.gz 包
 
 ## run
 ```
 export LEVELDB_HOME=
-export LD_LIBRARY_PATH = $LD_LIBRARY_PATH:$LEVELDB_HOME
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$LEVELDB_HOME/out-shared
+
+tar zxf leveldbjni/target/ycsb-leveldbjni-binding-0.16.0-SNAPSHOT.tar.gz
+cd ycsb-leveldbjni-binding-0.16.0-SNAPSHOT
+# leveldbjni.jar 要放到 lib 目录下
+cp novelsmjni.jar ycsb-leveldbjni-binding-0.16.0-SNAPSHOT/lib/
 
 export FLAGS_db_disk=/home/kv-pmem/xiaohu/FLAGS_db_disk
 export FLAGS_db_mem=/mnt/pmemdir
@@ -213,3 +222,22 @@ leveldbjni.cpp 中的 ResumeCompactions() SuspendCompactions() 还是会被恢�
 
 ### can not be used when making a shared object; recompile with -fPIC
 编译生成 jni.so 时不能链接 leveldb 的静态库(.a)
+
+### leveldb skiplist错误
+```
+Stack: [0x00007f17a70f1000,0x00007f17a71f2000],  sp=0x00007f17a71eff00,  free space=1019k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libleveldb.so.1+0x2b116]  leveldb::SkipList<char const*, leveldb::MemTable::KeyComparator>::SkipList(leveldb::MemTable::KeyComparator, leveldb::Arena*, bool)+0x216
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J 532  org.fusesource.leveldbjni.internal.NativeDB$DBJNI.Put(JLorg/fusesource/leveldbjni/internal/NativeWriteOptions;Lorg/fusesource/leveldbjni/internal/NativeSlice;Lorg/fusesource/leveldbjni/internal/NativeSlice;)J (0 bytes) @ 0x00007f17c53d0b7d [0x000    07f17c53d0b00+0x7d]
+J 529 C1 org.fusesource.leveldbjni.internal.NativeDB.put(Lorg/fusesource/leveldbjni/internal/NativeWriteOptions;[B[B)V (76 bytes) @ 0x00007f17c53dd9ac [0x00007f17c53dcfc0+0x9ec]
+J 525 C1 org.fusesource.leveldbjni.internal.JniDB.put([B[BLorg/iq80/leveldb/WriteOptions;)Lorg/iq80/leveldb/Snapshot; (50 bytes) @ 0x00007f17c53da4e4 [0x00007f17c53da3e0+0x104]
+J 523 C1 org.fusesource.leveldbjni.internal.JniDB.put([B[B)V (15 bytes) @ 0x00007f17c53d7ebc [0x00007f17c53d7d60+0x15c]
+J 448 C1 com.yahoo.ycsb.db.LevelDbJniClient.insert(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Lcom/yahoo/ycsb/Status; (102 bytes) @ 0x00007f17c53ad73c [0x00007f17c53acf60+0x7dc]
+J 446 C1 com.yahoo.ycsb.DBWrapper.insert(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Lcom/yahoo/ycsb/Status; (163 bytes) @ 0x00007f17c53a66b4 [0x00007f17c53a61e0+0x4d4]
+J 481 C1 com.yahoo.ycsb.workloads.CoreWorkload.doInsert(Lcom/yahoo/ycsb/DB;Ljava/lang/Object;)Z (201 bytes) @ 0x00007f17c53c3ccc [0x00007f17c53c38c0+0x40c]
+j  com.yahoo.ycsb.ClientThread.run()V+226
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+```
