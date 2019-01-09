@@ -255,6 +255,25 @@ export ROCKSDB_SHAREDLIB_DIR=/home/ycsb-rocksdb-binding-0.15.0/lib # 即使加�
 Exception in thread "Thread-2" java.lang.UnsatisfiedLinkError: /home/ycsb-rocksdb-binding-0.15.0/lib/librocksdbjni-linux64.so: librocksdb.so.5: cannot open shared object file: No such file or directory
 ```
 
+```
+export FLAGS_wal_dir=/home/kv-pmem/xiaohu/FLAGS_wal_dir
+export PMEM_PATH=/mnt/pmemdir/pmem.map
+export RANGE_NUM=128
+export RANGE_SIZE=64
+export KEY_NUM=300000
+
+bin/ycsb.sh load rocksdb -P workloads/workloadd -p rocksdb.dir=$FLAGS_wal_dir 2>&1 | tee our-nvm-workloadd.log
+```
+
+`pmem::obj::pool<template>::open` 出错
+```
+terminate called after throwing an instance of 'pmem::pool_error'
+  what():  Failed opening pool
+```
+
+给 open 的目标文件增加 `r` 权限就过了...
+`chmod +r file`
+
 # reference
 YCSB初步介绍  
 <https://www.cnblogs.com/foxmailed/archive/2012/02/29/2374595.html>  
