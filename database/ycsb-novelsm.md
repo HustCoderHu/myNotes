@@ -60,17 +60,20 @@ mvn -pl com.yahoo.ycsb:leveldbjni-binding -am clean package
 
 ## run
 ```
-export LEVELDB_HOME=
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$LEVELDB_HOME/out-shared
+export LEVELDB_HOME=/home/kv-pmem/xiaohu/lsm_nvm
+export LEVELDBJNI_HOME=/home/kv-pmem/xiaohu/leveldbjni
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$LEVELDB_HOME/out-shared:$LEVELDBJNI_HOME/leveldbjni-linux64/target/native-build/target/lib
 
 tar zxf leveldbjni/target/ycsb-leveldbjni-binding-0.16.0-SNAPSHOT.tar.gz
 cd ycsb-leveldbjni-binding-0.16.0-SNAPSHOT
 # leveldbjni.jar 要放到 lib 目录下
 cp novelsmjni.jar ycsb-leveldbjni-binding-0.16.0-SNAPSHOT/lib/
 
+# 67108864 == 64 << 20
+export FLAGS_use_existing_db=1
 export FLAGS_db_disk=/home/kv-pmem/xiaohu/FLAGS_db_disk
 export FLAGS_db_mem=/mnt/pmemdir
-export FLAGS_nvm_buffer_size=4096
+export FLAGS_nvm_buffer_size=67108864
 export FLAGS_num_levels=2
 export FLAGS_num_read_threads=1
 
