@@ -83,8 +83,11 @@ mkdir unzip_classes
 cd unzip_classes
 cp ../java/librocksdbjni-shared.so librocksdbjni-linux64.so
 $JAVA_HOME/bin/jar -xf ../java/rocksdbjni_classes.jar
-$JAVA_HOME/bin/jar -cf rocksdbjni-5.18.0.jar *
 $JAVA_HOME/bin/jar -cf rocksdbjni-5.18.0.jar ../librocksdb.so librocksdbjni-linux64.so org/rocksdb/* 
+$JAVA_HOME/bin/jar -cf rocksdbjni-5.18.0.jar *
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:build
+
 ```
 
 将 `rocksdbjni-5.18.0.jar` 放到 `ycsb/lib` 目录下
@@ -246,7 +249,12 @@ main 函数在 `core/src/main/java/com/yahoo/ycsb/Client.java`
 
 rocksdb 的适配层在 `rocksdb/src/main/java/com/yahoo/ycsb/db/rocksdb/RocksDBClient.java`
 
+## workload
+```
+fieldcount=1
+fieldlength=4096
 
+```
 
 ## run
 ```
@@ -257,10 +265,12 @@ Exception in thread "Thread-2" java.lang.UnsatisfiedLinkError: /home/ycsb-rocksd
 
 ```
 export FLAGS_wal_dir=/home/kv-pmem/xiaohu/FLAGS_wal_dir
-export PMEM_PATH=/mnt/pmemdir/pmem.map
+export FLAGS_wal_dir=/mnt/ssd/xiaohu/doubleV2
+export PMEM_PATH=/pmem/xiaohu/doubleV2/pmem.map
+export RANGEFILE_PATH=/pmem/xiaohu/doubleV2/PersistentAllocator_0.mapfile
 export RANGE_NUM=128
 export RANGE_SIZE=64
-export KEY_NUM=300000
+export KEY_NUM=200000
 
 bin/ycsb.sh load rocksdb -P workloads/workloadd -p rocksdb.dir=$FLAGS_wal_dir 2>&1 | tee our-nvm-workloadd.log
 ```
