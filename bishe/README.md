@@ -20,3 +20,7 @@ XNOR-Net ImageNet Classification Using Binary Convolutional Neural Networks
 
 XNOR-Net算法详解
 <http://blog.csdn.net/u014380165/article/details/77731595>
+
+
+POLARDB · 理论基础 · 敢问路在何方 — 论B+树索引的演进方向（上）  
+<http://mysql.taobao.org/monthly/2018/11/01/>  
