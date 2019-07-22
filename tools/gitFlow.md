@@ -1,16 +1,23 @@
 工作流
 ---
 
+# 子模块
+配置子模块的 URL
+``` sh
+git config submodule.$modname.url $repoURL
+git submodule update --recursive --remote
+```
+
 # 多分支
 以github 为例，先fork别人的repo，比如说repo_a
-```
+```sh
 git clone 自己的git url
 git remote add REMOTE_NAME URL_REPO_A # 上游的repo加到 REMOTE_NAME 里
 git remote -v # 查看remote
 ```
 
 如果上游更新了，下面操作会更新github上自己的fork，因为用的不是merge，所以不会有合并的commit
-```
+```sh
 git fetch REMOTE_NAME  # 先拉一下上游的代码
 git checkout master # 切换到本地 master
 git rebase -i REMOTE_NAME/master # 交互式 将REMOTE_NAME的master提交并到当前的分支, 
@@ -20,7 +27,7 @@ git push -f # be careful， 强行覆盖自己github上 的当前分支
 
 在团队里时，开发的分支和master分开，常见是每个人自己有个分支
 如果要开始开发，新开一个分支
-```
+```sh
 git checkout -b BRANCH_NAME # 本地新建一个分支用来添加代码
 git push -u origin BRANCH_NAME # 将这个分支推到 github 上 (新建分支)
 # -u 表示 远程分支作为 upstream，pull和push都会对应
@@ -31,7 +38,7 @@ git rebase -i master # 将本地的master分支并到当前分支
 就要加 `-f` 参数
 
 push的更详细的用法是
-```
+```sh
 git push REPO_NAME BRANCH_NAME_A : BRANCH_NAME_B
 ```
 三种功能
