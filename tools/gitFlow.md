@@ -6,6 +6,7 @@
 ``` sh
 git config submodule.$modname.url $repoURL
 git submodule update --recursive --remote
+# 子模块可能要切换分支
 ```
 
 # 多分支
@@ -50,12 +51,26 @@ git push REPO_NAME BRANCH_NAME_A : BRANCH_NAME_B
 git branch -d BRANCH_NAME # 删除本地分支，要先切到其他分支才能删除
 ```
 
+# 双分支
+不同名 track
+```sh
+git config --global push.default upstream # push 默认模式修改，否则要求同名
+# 配置上游 push & pull
+git branch -u $local_branch $repo/$branch # -u, --set-upstream-to
+# OR
+git branch -u $repo/$branch
+# OR
+git branch --set-upstream $repo/$branch
+
+git push origin HEAD:$branch # HEAD git log 查看
+```
+
 ## 切换远程分支
 
 ```
 # 先拉取上游分支
 git fetch upstream ${BRANCH_NAME}
-git checkout -b ${BRANCH_NAME} remotes/upstream/${BRANCH_NAME}
+git checkout -b ${BRANCH_NAME} upstream/${BRANCH_NAME}
 ```
 
 本地切换到远程分支，其实隐含了创建本地分支的过程
@@ -126,3 +141,5 @@ Git - Your branch and 'origin/xxx' have diverged
 <https://blog.csdn.net/d6619309/article/details/52711035>  
 git切换到远程分支  
 <https://www.w3ctech.com/topic/58>  
+【Git】推送本地分支到远程不同名分支  
+<https://www.jianshu.com/p/b4e3b6bba837>
