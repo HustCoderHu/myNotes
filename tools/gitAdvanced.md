@@ -40,6 +40,8 @@ ssh -T git@github.com # -v 显示更详细的内容
 ```sh
 git config --global --unset user.name
 git config --global --unset user.email
+
+git config --list # 查看设置情况
 ```
 仅对某个项目有效
 
