@@ -57,3 +57,5 @@ extern int Dev_PrintInt(int number);
 # reference
 Doxygen 10 分钟入门教程  
 <https://cedar-renjun.github.io/2014/03/21/learn-doxygen-in-10-minutes/>  
+Doxygen的注释规则  
+<http://www.mikewootc.com/wiki/tool/sw_develop/doxygen_comment_format.html>  
