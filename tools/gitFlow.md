@@ -2,9 +2,15 @@
 ---
 
 # 子模块
+```sh
+git clone --progress --recursive -v $GITurl
+git submodule update --init --recursive
+```
+
 配置子模块的 URL
 ``` sh
 git config submodule.$modname.url $repoURL
+git config submodule.$modname.branch $branch
 git submodule update --recursive --remote
 # 子模块可能要切换分支
 ```
