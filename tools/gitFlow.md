@@ -3,8 +3,19 @@
 
 # 子模块
 ```sh
-git clone --progress --recursive -v $GITurl
+git clone --recursive -v $GITurl
 git submodule update --init --recursive
+```
+
+# 保存用户名密码
+当系统里存在多个用户时，上面clone http 可能会出现认证失败的情况，原因是保存的用户名和clone需要的发生冲突，  
+解决办法是重置保存
+```sh
+git config --system --unset credential.helper
+```
+如果要保存就
+```sh
+git config --global credential.helper manager
 ```
 
 配置子模块的 URL
