@@ -12,6 +12,7 @@
 - [createREADME.py](createREADME.py)
 - [index_reference.md](index_reference.md)
 - [interview.md](interview.md)
+- [openwrt.md](openwrt.md)
 - [README.md](README.md)
 - [软件工程.md](软件工程.md)
 ## 1 algorithm
@@ -139,6 +140,7 @@
 - [git-common-use.md](tools/git-common-use.md)
 - [git-diff.md](tools/git-diff.md)
 - [git-stash.md](tools/git-stash.md)
+- [gitAdvanced.md](tools/gitAdvanced.md)
 - [gitFlow.md](tools/gitFlow.md)
 - [gitRuMen.md](tools/gitRuMen.md)
 - [IO监测.md](tools/IO监测.md)
