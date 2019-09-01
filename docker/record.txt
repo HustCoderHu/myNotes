@@ -1,0 +1,37 @@
+docker run -tid \
+--mount type=bind,source=/mnt/d/docs/huya_gitlab,target=/home/huya_gitlab \
+--mount type=bind,source=/mnt/d/docs/github_repo,target=/home/github_repo \
+-p 22222:22 \
+add_ssh_vim:latest bash -c \
+"/etc/init.d/ssh start; bash"
+
+--name add_ssh \
+
+docker build \
+  --compress -t $REPO --force-rm $DOCKERFILE_DIR
+
+
+docker run -ti \
+--mount type=bind,source=/mnt/d/docs,target=/home,readonly \
+--mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
+--mount type=bind,source=/etc/apt/sources.list,target=/etc/apt/sources.list,readonly \
+--name cmake_rmGCC7_ninja_gcc5_git \
+ubuntu:latest bash
+
+The following additional packages will be installed:
+  ca-certificates cmake-data cpp cpp-7 gcc gcc-7 krb5-locales libarchive13 libasan4 libasn1-8-heimdal libcurl4 libexpat1 libgcc-7-dev
+  libgssapi-krb5-2 libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal libheimntlm0-heimdal libhx509-5-heimdal libicu60 libisl19
+  libjsoncpp1 libk5crypto3 libkeyutils1 libkrb5-26-heimdal libkrb5-3 libkrb5support0 libldap-2.4-2 libldap-common liblzo2-2 libmpx2 libnghttp2-14
+  libpsl5 librhash0 libroken18-heimdal librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libsqlite3-0 libssl1.1 libuv1 libwind0-heimdal
+  libxml2 make multiarch-support openssl publicsuffix
+Suggested packages:
+  cmake-doc ninja-build cpp-doc gcc-7-locales gcc-multilib autoconf automake libtool flex bison gdb gcc-doc gcc-7-multilib gcc-7-doc libgcc1-dbg
+  libgomp1-dbg libitm1-dbg libatomic1-dbg libasan4-dbg liblsan0-dbg libtsan0-dbg libubsan0-dbg libcilkrts5-dbg libmpx2-dbg libquadmath0-dbg lrzip
+  krb5-doc krb5-user libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp
+  libsasl2-modules-sql make-doc
+The following NEW packages will be installed:
+  ca-certificates cmake cmake-data cpp cpp-7 gcc gcc-7 krb5-locales libarchive13 libasan4 libasn1-8-heimdal libcurl4 libexpat1 libgcc-7-dev
+  libgssapi-krb5-2 libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal libheimntlm0-heimdal libhx509-5-heimdal libicu60 libisl19
+  libjsoncpp1 libk5crypto3 libkeyutils1 libkrb5-26-heimdal libkrb5-3 libkrb5support0 libldap-2.4-2 libldap-common liblzo2-2 libmpx2 libnghttp2-14
+  libpsl5 librhash0 libroken18-heimdal librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libsqlite3-0 libssl1.1 libuv1 libwind0-heimdal
+  libxml2 make multiarch-support openssl publicsuffix
