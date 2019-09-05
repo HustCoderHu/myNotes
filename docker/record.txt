@@ -1,4 +1,13 @@
 docker run -tid \
+--mount type=bind,source=/mnt/e/docs/code,target=/home/code \
+--mount type=bind,source=/mnt/e/docs/github_repo,target=/home/github_repo \
+--mount type=bind,source=/mnt/e/docs/huya_repo,target=/home/huya_repo \
+-p 22222:22 \
+--name ssh_vim_Go \
+8d7a1 bash -c \
+"/etc/init.d/ssh start; bash"
+
+docker run -tid \
 --mount type=bind,source=/mnt/d/docs/huya_gitlab,target=/home/huya_gitlab \
 --mount type=bind,source=/mnt/d/docs/github_repo,target=/home/github_repo \
 -p 22222:22 \
@@ -8,7 +17,7 @@ add_ssh_vim:latest bash -c \
 --name add_ssh \
 
 docker build \
-  --compress -t $REPO --force-rm $DOCKERFILE_DIR
+  --compress -t alpha_quic_build_env --force-rm $DOCKERFILE_DIR
 
 
 docker run -ti \
