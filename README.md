@@ -127,7 +127,9 @@
 - [json.md](python/json.md)
 - [README.md](python/README.md)
 - [并发.md](python/并发.md)
-## 24 TensorFlow
+## 24 Systeming
+- [高实时系统场景下的服务升级方案.md](Systeming/高实时系统场景下的服务升级方案.md)
+## 25 TensorFlow
 - [build_tfrecord.md](TensorFlow/build_tfrecord.md)
 - [DatasetFromManyImages.md](TensorFlow/DatasetFromManyImages.md)
 - [distributed.md](TensorFlow/distributed.md)
@@ -138,7 +140,7 @@
 - [todo.md](TensorFlow/todo.md)
 - [train.MonitoredSession.md](TensorFlow/train.MonitoredSession.md)
 - [从零开始的Estimator(一).md](TensorFlow/从零开始的Estimator(一).md)
-## 25 tools
+## 26 tools
 - [axel-download-accelerator.md](tools/axel-download-accelerator.md)
 - [CMake.md](tools/CMake.md)
 - [code_win2linux.md](tools/code_win2linux.md)
@@ -157,9 +159,9 @@
 - [linux多终端.md](tools/linux多终端.md)
 - [Makefile.md](tools/Makefile.md)
 - [nppTricks.md](tools/nppTricks.md)
-## 26 ubuntu
+## 27 ubuntu
 - [trouble_shot.md](ubuntu/trouble_shot.md)
-## 27 vpn
+## 28 vpn
 - [checkpsw.sh](vpn/checkpsw.sh)
 - [introduction.md](vpn/introduction.md)
 - [openvpn-install.md](vpn/openvpn-install.md)
