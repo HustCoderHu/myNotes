@@ -1,0 +1,25 @@
+```powershell
+setx GOROOT "D:\Software\Program\go\go1.22.0"
+setx GOPATH "%GOROOT%\gopath"
+setx GOBIN "%GOPATH%\bin"
+setx GOMODCACHE "%GOPATH%\pkg\mod"
+setx GOCACHE "gocache_build"  ### 
+setx PATH "%PATH%;%GOROOT%\bin;%GOBIN%"
+
+setx GO111MODULE on
+setx GOPROXY "https://goproxy.io,direct"
+```
+
+```bash
+cat >> ~/.profile <<EOF
+export GOROOT=$HOME/go/go1.21.6
+export GOPATH=$HOME/go
+export PATH=\$PATH:\$GOROOT/bin:\$GOPATH/bin
+export GO111MODULE=on
+export GOPROXY=https://goproxy.io,direct
+
+EOF
+source ~/.profile
+```
+
+go telemetry off
